@@ -1,24 +1,22 @@
 <?php
 include("config.php");
-
-if(isset($_POST['sub'])){
+$msg="";
+if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $usertype = $_POST['usertype'];
 
-    $res = mysqli_query($mysqli, "select * from logintb where UserName = '$username' and Password = '$password'");
-    $result = mysqli_fetch_array($res);
-    if($result){
-        header("location:Home.php");
-    }
-    else{
-        echo"Failed";
-    }
+    $sql = "insert into logintb(UserName, Password) values('$username', '$password')";
+    mysqli_query($mysqli, $sql);
+}
+else{
 }
 ?>
 
+
 <html>
 <head>
-    <title>Sign In</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,20 +63,23 @@ if(isset($_POST['sub'])){
 
             <div class="mb-md-5 mt-md-4 pb-5">
             <form action="" method="post">
-              <h2 class="fw-bold mb-2 text-uppercase">SIGN IN</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+              <h2 class="fw-bold mb-2 text-uppercase">SIGN UP</h2>
+              <p class="text-white-50 mb-5">Please enter required details</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Email/UserName"/>
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Your Email"/>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Password"/>
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Your Password"/>
               </div>
 
-              <b><p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p></b>
-              <input type="submit" value="Sign In" name="sub" class="btn btn-outline-light btn-lg px-5"><br><br>
-              <b><p>Don't have account? <a href="signup.php" class="text-white-50 fw-bold">Sign Up</a></p></b>
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="repeat password" placeholder="Repeat Password"/>
+              </div><br>
+
+              <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
+              <b><p>Already have account? <a href="signin.php" class="text-white-50 fw-bold">Sign In</a></p></b>
             </form>       
             </div>
           </div>
