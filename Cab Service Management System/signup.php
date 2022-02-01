@@ -8,8 +8,14 @@ if(isset($_POST['submit'])){
 
     $sql = "insert into logintb(UserName, Password) values('$username', '$password')";
     mysqli_query($mysqli, $sql);
+    $res = mysqli_query($mysqli, "select * from logintb where UserName = '$username' and Password = '$password'");
+$result = mysqli_fetch_array($res);
+if($result){
+header("location:index.php");
+session_start();
+$_SESSION['loggedin']=true;
+$_SESSION['username']=$username;
 }
-else{
 }
 ?>
 
