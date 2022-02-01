@@ -1,9 +1,9 @@
-
-
-
+<?php
+$cab=$_GET["cab"];
+?>
 <html>
     <head>
-        <title>Home</title>
+        <title>Cabs</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,25 +20,30 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Details</a>
+                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                        <a class="nav-link active" aria-current="page" href="#">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
                     </li>
                 </ul>
-                    <a href="index.php"><button class="btn btn-outline-light" type="submit">Log Out</button></a>
+                <?php
+                if ($cab==1){
+                    echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                }
+                else{
+                    echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
+                    echo "<a href='signup.php'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
+                }
+                ?>
             </div>
         </div>
     </nav>

@@ -1,14 +1,24 @@
 <?php
 include("config.php");
-
+$result = 0;
 if(isset($_POST['sub'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     $res = mysqli_query($mysqli, "select * from logintb where UserName = '$username' and Password = '$password'");
     $result = mysqli_fetch_array($res);
-    if($result){
-        header("location:Home.php");
+    $usertype = $result['UserType'];
+    if($result && $usertype=='Customer'){
+        header("location:index.php");
+        session_start();
+        $_SESSION['loggedin']=true;
+        $_SESSION['username']=$username;
+    }
+    elseif($result && $usertype=='Admin'){
+      header("location:dashboard.php");
+        session_start();
+        $_SESSION['loggedin']=true;
+        $_SESSION['username']=$username;
     }
     else{
         echo"Failed";
