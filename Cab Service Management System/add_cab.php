@@ -1,5 +1,24 @@
 <?php
+include("config.php");
 $add_cab=$_GET["add_cab"];
+
+if(isset($_POST['submit'])){
+  $rg_no = $_POST['rg_no'];
+  $model_name = $_POST['model_name'];
+  $model_year = $_POST['model_year'];
+  $purchase_date = $_POST['purchase_date'];
+  $cab_image = $_FILES['cab_image']['tmp_name'];
+
+  $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, cab_image)
+            values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$cab_image')";
+  mysqli_query($mysqli, $sql);
+
+  $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
+  $result = mysqli_fetch_array($res);
+  if($result){
+  echo"<script>alert('Saved Succesfully')</script>";
+  }
+}
 ?>
 <html>
     <head>
@@ -50,45 +69,69 @@ $add_cab=$_GET["add_cab"];
         </div>
     </nav>
     <div class="container">
-    <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 700px;">
+    <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 550px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 600px; width: 1000px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 650px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
               <h2 class="fw-bold mb-2 text-uppercase">Add Cab Details</h2><br>
+                </div>
+                </div>
+
                 <div class="row">
-              <div class="col-md-5 mb-4">
+              <div class="col-md-12 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="firstName">Model Name</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Model Name" name="model_name"/>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="firstName">Registration No.</label>
-                    <input type="text" id="firstName" class="form-control form-control-lg" placeholder="Registration No."/>
+                    <input type="text" class="form-control form-control-lg" placeholder="Registration No." name="rg_no"/>
                   </div>
                 </div>
-                <div class="col-md-7 mb-4">
+                <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="firstName">Model Year</label>
-                    <input type="text" id="firstName" class="form-control form-control-lg" placeholder="Model Year"/>
+                    <input type="text" class="form-control form-control-lg" placeholder="Model Year" name="model_year"/>
                   </div>
                 </div>
                 </div>
 
                 <div class="row">
-                <div class="col-md-5 mb-4">
-              <div class="form-outline form-white mb-4">
-              <label class="form-label" for="firstName">Model Name</label>
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Model Name"/>
-              </div>
-              <div class="row">
-                <div class="col-md-5 mb-4">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="firstName">Purchase Date</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Shuld be in YYYY-MM-DD format" name="purchase_date"/>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+              <div class="form-outline">
+                <label for="form-label">Cab Image (Optional)</label>
+                <input type="file" class="form-control form-control-lg" id="exampleFormControlFile1" name="cab_image">
+                  </div>
+                </div>
+                </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Password"/>
-              </div>
-
-              <input type="submit" value="Sign In" name="sub" class="btn btn-outline-light btn-lg px-5"><br><br>
+                <br><br><br><div class="row">
+              <div class="col-md-3 mb-4">
+              <div class="form-outline">
+              <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
+                  </div>
+                </div>
+                </div>
+              
             </form>       
             </div>
           </div>

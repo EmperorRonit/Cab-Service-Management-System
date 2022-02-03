@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-$cab=$_GET["cab"];
+    $cab=$_GET["cab"];
 $res = mysqli_query($mysqli, "select * from cabtb");
 ?>
 <html>
