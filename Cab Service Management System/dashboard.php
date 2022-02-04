@@ -6,6 +6,9 @@ if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
 else{
     $cab=0;
 }
+if(isset($_GET['cab'])){
+    $cab = 1;
+}
 ?>
 
 <html>
@@ -43,7 +46,7 @@ else{
                     </li>
                 </ul>
                 <?php
-                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $cab==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                     session_destroy();
                 }

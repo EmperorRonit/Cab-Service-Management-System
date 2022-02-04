@@ -1,17 +1,20 @@
 <?php
 include("config.php");
-$add_cab=$_GET["add_cab"];
+if(isset($_GET['add_cab'])){
+  $add_cab=$_GET["add_cab"];
+}
 
-if(isset($_POST['submit'])){
+if(isset($_POST['save'])){
   $rg_no = $_POST['rg_no'];
   $model_name = $_POST['model_name'];
   $model_year = $_POST['model_year'];
   $purchase_date = $_POST['purchase_date'];
-  $cab_image = $_FILES['cab_image']['tmp_name'];
 
-  $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, cab_image)
-            values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$cab_image')";
+      $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date)
+            values('$rg_no', '$model_name', '$model_year', '$purchase_date')";
   mysqli_query($mysqli, $sql);
+
+  
 
   $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
   $result = mysqli_fetch_array($res);
@@ -41,13 +44,13 @@ if(isset($_POST['submit'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?cab=<?php echo $add_cab?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?cab=<?php echo $add_cab?>">Cabs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Drivers</a>
@@ -116,18 +119,12 @@ if(isset($_POST['submit'])){
                     <input type="text" class="form-control form-control-lg" placeholder="Shuld be in YYYY-MM-DD format" name="purchase_date"/>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <label for="form-label">Cab Image (Optional)</label>
-                <input type="file" class="form-control form-control-lg" id="exampleFormControlFile1" name="cab_image">
-                  </div>
-                </div>
                 </div>
 
                 <br><br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
+              <input type="submit" value="Save" name="save" class="btn btn-outline-light btn-lg px-5"><br><br>
                   </div>
                 </div>
                 </div>
