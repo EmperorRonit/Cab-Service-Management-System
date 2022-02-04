@@ -1,6 +1,9 @@
 <?php
 include("config.php");
-$cab=$_GET["cab"];
+
+if(isset($_GET['cab'])){
+    $cab=$_GET["cab"];
+}
 $res = mysqli_query($mysqli, "select * from cabtb");
 ?>
 <html>
@@ -22,7 +25,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?cab=<?php echo $cab?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
@@ -72,7 +75,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         echo "<td>".$row['model_name']."</td>";
         echo "<td>".$row['model_year']."</td>";
         echo "<td>".$row['purchase_date']."</td>";
-        echo "<td><a href='index.php?cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
+        echo "<td><a href='edit_cab.php?edit_cab=".$cab."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }
