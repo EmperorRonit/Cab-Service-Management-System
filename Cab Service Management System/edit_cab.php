@@ -1,13 +1,16 @@
 <?php
 include("config.php");
-if(isset($_GET['edit_cab'])){
-    $edit_cab=$_GET["edit_cab"];
+if(isset($_GET['logcount'])){
+    $logcount=$_GET["logcount"];
   }
 
 $cab_id=$_GET['cab_id'];
 $sql = "SELECT * FROM cabtb WHERE cab_id='".$cab_id."'";
 $res = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($res);
+$img = $row['image'];
+$img_src = "F:\WampServer\www\Cab Service Management System\Cab Service Management System\upload/".$img;
+
 
 if(isset($_POST['edit'])){
     $model_name = $_POST['model_name'];
@@ -15,11 +18,22 @@ if(isset($_POST['edit'])){
     $model_year = $_POST['model_year'];
     $purchase_date = $_POST['purchase_date'];
 
-    $sql = "UPDATE cabtb set rg_no='".$rg_no."', 
-    model_name='".$model_name."', model_year='".$model_year."', purchase_date='".$purchase_date."'
+    $image = $_FILES['image']['name'];
+  $target_dir = "F:\WampServer\www\Cab Service Management System\Cab Service Management System\upload/";
+  $target_file = $target_dir.basename($_FILES['image']['name']);
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $extension_arr = array("jpg", "jpeg", "png", "gif");
+  if(in_array($imageFileType, $extension_arr)){
+    if(move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$image)){
+      $sql = "UPDATE cabtb set rg_no='".$rg_no."', 
+    model_name='".$model_name."', model_year='".$model_year."', purchase_date='".$purchase_date."', image='".$image."'
     WHERE cab_id='" . $cab_id. "'";
     mysqli_query($mysqli, $sql);
     echo"<script>alert('Edited Succesfully')</script>";
+    }
+  } 
+
+    
 }
 
 if(isset($_POST['delete'])){
@@ -27,6 +41,7 @@ if(isset($_POST['delete'])){
     $rg_no = $_POST['rg_no'];
     $model_year = $_POST['model_year'];
     $purchase_date = $_POST['purchase_date'];
+    $image = $_FILES['image'];
 
     $sql = "DELETE FROM cabtb
     WHERE cab_id='" . $cab_id. "'";
@@ -57,13 +72,13 @@ if(isset($_POST['delete'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php?cab=<?php echo $edit_cab?>">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?cab=<?php echo $edit_cab?>">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Drivers</a>
@@ -73,7 +88,7 @@ if(isset($_POST['delete'])){
                     </li>
                 </ul>
                 <?php
-                if ($edit_cab==1){
+                if ($logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                 }
                 else{
@@ -90,46 +105,102 @@ if(isset($_POST['delete'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 700px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 750px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
             <form action="" method="post" enctype="multipart/form-data">
             <div class="row">
-              <div class="col-md-6 mb-4">
-              <h2 class="fw-bold mb-2 text-uppercase">Edit Cab Details</h2><br>
+              <div class="col-md-8 mb-4">
+              <h1 class="fw-bold mb-2 text-uppercase">Edit Cab Details</h1><br>
                 </div>
                 </div>
 
                 <div class="row">
-              <div class="col-md-12 mb-4">
+              <div class="col-md-5 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="firstName">Model Name</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Model Name" name="model_name" value="<?php echo $row['model_name']?>"/>
+                    <h4 class="fw-bold mb-2">Model Name:</h4>
+                  </div>
+                </div>
+                <div class="col-md-7 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Model Name" name="model_name" value="<?php echo $row['model_name']?>"/>
                   </div>
                 </div>
                 </div>
 
                 <div class="row">
-              <div class="col-md-6 mb-4">
+              <div class="col-md-5 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="firstName">Registration No.</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Registration No." name="rg_no" value="<?php echo $row['rg_no']?>"/>
+                  <h4 class="fw-bold mb-2">Registration No.:</h4>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="firstName">Model Year</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Model Year" name="model_year" value="<?php echo $row['model_year']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Registration No." name="rg_no" value="<?php echo $row['rg_no']?>"/>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
                   </div>
                 </div>
                 </div>
 
                 <div class="row">
-                <div class="col-md-6 mb-4">
+              <div class="col-md-5 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="firstName">Purchase Date</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Shuld be in YYYY-MM-DD format" name="purchase_date" value="<?php echo $row['purchase_date']?>"/>
+                  <h4 class="fw-bold mb-2">Model Year:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Model Year" name="model_year" value="<?php echo $row['model_year']?>"/>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-5 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Purchase Date:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="date" name="purchase_date" id="" class="form-control form-control" value="<?php echo $row['purchase_date']?>">
+                </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-5 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Cab Image (Optional):</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="file" class="form-control form-control" id="customFile" name="image">
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <img src="<?php echo $img_src?>" class="img-thumbnail" alt="...">
                   </div>
                 </div>
                 </div>

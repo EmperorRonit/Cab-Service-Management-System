@@ -1,13 +1,13 @@
 <?php
 session_start();
 if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
-    $cab=1;
+    $logcount=1;
 }
 else{
-    $cab=0;
+    $logcount=0;
 }
-if(isset($_GET['cab'])){
-    $cab = 1;
+if(isset($_GET['logcount'])){
+    $logcount = 1;
 }
 ?>
 
@@ -36,17 +36,17 @@ if(isset($_GET['cab'])){
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?cab=<?php echo $cab?>" name="cab">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>" name="cab">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Drivers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Employees</a>
                     </li>
                 </ul>
                 <?php
-                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $cab==1){
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                     session_destroy();
                 }

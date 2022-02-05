@@ -8,7 +8,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
 ?>
 <html>
     <head>
-        <title>Cab</title>
+        <title>Driver</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Driver</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
