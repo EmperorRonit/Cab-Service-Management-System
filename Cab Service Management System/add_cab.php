@@ -10,19 +10,13 @@ if(isset($_POST['save'])){
   $model_year = $_POST['model_year'];
   $purchase_date = $_POST['purchase_date'];
 
-  $image = $_FILES['image']['name'];
-  $target_dir = "F:\WampServer\www\Cab Service Management System\Cab Service Management System\upload/";
-  $target_file = $target_dir.basename($_FILES['image']['name']);
-  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-  $extension_arr = array("jpg", "jpeg", "png", "gif");
-  if(in_array($imageFileType, $extension_arr)){
-    if(move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$image)){
-      $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, image)
-            values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$image')";
-  mysqli_query($mysqli, $sql);
-    }
-  }
-
+  $image = rand(1000, 100000)."-". $_FILES['image']['name'];
+  $file_loc = $_FILES['image']['tmp_name'];
+  $folder="upload/";
+  move_uploaded_file($file_loc, $folder.$image);
+  $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, image)
+  values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$image')";
+mysqli_query($mysqli, $sql);
       
 
   
@@ -30,7 +24,10 @@ if(isset($_POST['save'])){
   $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
   $result = mysqli_fetch_array($res);
   if($result){
-  echo"<script>alert('Saved Succesfully')</script>";
+    echo"<script>alert('Saved Succesfully')</script>";
+  }
+  else{
+    echo"<script>alert('Faild to Saved')</script>";
   }
 }
 ?>

@@ -4,7 +4,7 @@ include("config.php");
 if(isset($_GET['logcount'])){
     $logcount=$_GET["logcount"];
 }
-$res = mysqli_query($mysqli, "select * from cabtb");
+$res = mysqli_query($mysqli, "select * from drivertb");
 ?>
 <html>
     <head>
@@ -53,16 +53,16 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Driver</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Driver</h2><a href='add_driver.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Rgister No.</th>
-      <th scope="col">Model Name</th>
-      <th scope="col">Model Year</th>
-      <th scope="col">Purchase Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Zip Code</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -70,11 +70,11 @@ $res = mysqli_query($mysqli, "select * from cabtb");
     while($row = mysqli_fetch_array($res)){
         echo "<tbody>";
         echo "<tr>";
-        echo "<th scope='row'>".$row['cab_id']."</th>";
-        echo "<td>".$row['rg_no']."</td>";
-        echo "<td>".$row['model_name']."</td>";
-        echo "<td>".$row['model_year']."</td>";
-        echo "<td>".$row['purchase_date']."</td>";
+        echo "<th scope='row'>".$row['driver_id']."</th>";
+        echo "<td>".$row['Name']."</td>";
+        echo "<td>".$row['Phone_no']."</td>";
+        echo "<td>".$row['Email_id']."</td>";
+        echo "<td>".$row['Zip_code']."</td>";
         echo "<td><a href='edit_cab.php?logcount=".$logcount."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
         echo "</tr>";
         echo"</tbody>";

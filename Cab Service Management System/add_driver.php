@@ -1,65 +1,48 @@
 <?php
 include("config.php");
 if(isset($_GET['logcount'])){
-    $logcount=$_GET["logcount"];
+  $logcount=$_GET["logcount"];
+}
+
+if(isset($_POST['save'])){
+  $rg_no = $_POST['rg_no'];
+  $model_name = $_POST['model_name'];
+  $model_year = $_POST['model_year'];
+  $purchase_date = $_POST['purchase_date'];
+
+  $image = $_FILES['image']['name'];
+  $target_dir = "upload/";
+  $target_file = $target_dir.basename($_FILES['image']['name']);
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $extension_arr = array("jpg", "jpeg", "png", "gif");
+  if(in_array($imageFileType, $extension_arr)){
+    if(move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$image)){
+      $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, image)
+            values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$image')";
+  mysqli_query($mysqli, $sql);
+    }
   }
 
-$cab_id=$_GET['cab_id'];
-$sql = "SELECT * FROM cabtb WHERE cab_id='".$cab_id."'";
-$res = mysqli_query($mysqli, $sql);
-$row = mysqli_fetch_array($res);
+      
 
+  
 
-if(isset($_POST['edit'])){
-    $model_name = $_POST['model_name'];
-    $rg_no = $_POST['rg_no'];
-    $model_year = $_POST['model_year'];
-    $purchase_date = $_POST['purchase_date'];
-
-    $image = rand(1000, 100000)."-". $_FILES['image']['name'];
-  $file_loc = $_FILES['image']['tmp_name'];
-  $folder="upload/";
-  move_uploaded_file($file_loc, $folder.$image);
-      $sql = "UPDATE cabtb set rg_no='".$rg_no."', 
-    model_name='".$model_name."', model_year='".$model_year."', purchase_date='".$purchase_date."', image='".$image."'
-    WHERE cab_id='" . $cab_id. "'";
-    mysqli_query($mysqli, $sql);
-    if(mysqli_query($mysqli, $sql)){
-      echo"<script>alert('Edited Succesfully')</script>"; 
-    }
-    else{
-      echo"<script>alert('Faild to Edited')</script>"; 
-    }
-    
-
-    
-}
-
-if(isset($_POST['delete'])){
-    $model_name = $_POST['model_name'];
-    $rg_no = $_POST['rg_no'];
-    $model_year = $_POST['model_year'];
-    $purchase_date = $_POST['purchase_date'];
-    $image = $_FILES['image'];
-
-    $sql = "DELETE FROM cabtb
-    WHERE cab_id='" . $cab_id. "'";
-    mysqli_query($mysqli, $sql);
-    echo"<script>alert('Deleted Succesfully')</script>";
+  $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
+  $result = mysqli_fetch_array($res);
+  if($result){
+  echo"<script>alert('Saved Succesfully')</script>";
+  }
 }
 ?>
-
-
 <html>
     <head>
-        <title>Edit Cab</title>
+        <title>Add Drvier</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="csms.css">
-    
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -98,20 +81,20 @@ if(isset($_POST['delete'])){
             </div>
         </div>
     </nav>
-    
     <div class="container">
     <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 550px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 750px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 650px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
             <form action="" method="post" enctype="multipart/form-data">
+
             <div class="row">
               <div class="col-md-8 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Edit Cab Details</h1><br>
+              <h1 class="fw-bold mb-2 text-uppercase">Add Drvier Details</h1><br>
                 </div>
                 </div>
 
@@ -123,7 +106,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-7 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Model Name" name="model_name" value="<?php echo $row['model_name']?>"/>
+                    <input type="text" class="form-control form-control" placeholder="Model Name" name="model_name"/>
                   </div>
                 </div>
                 </div>
@@ -136,7 +119,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Registration No." name="rg_no" value="<?php echo $row['rg_no']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Registration No." name="rg_no"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -153,7 +136,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Model Year" name="model_year" value="<?php echo $row['model_year']?>"/>
+                    <input type="text" class="form-control form-control" placeholder="Model Year" name="model_year"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -170,7 +153,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="purchase_date" id="" class="form-control form-control" value="<?php echo $row['purchase_date'];?>">
+                  <input type="date" name="purchase_date" id="" class="form-control form-control">
                 </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -187,25 +170,31 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="file" class="form-control form-control" id="customFile" name="image">
-                  </div>
+                    <input type="file" class="form-control form-control" id="customFile" name="image">
+                </div>
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                    <a href="upload/<?php echo $row['image']?>" class="form-control form-control">view Image</a>
                 </div>
                 </div>
                 </div>
 
-                <br><br><br><div class="row">
-              <div class="col-md-6 mb-4">
+                <br><br><div class="row">
+              <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Delete" name="delete" class="btn btn-danger btn-lg px-5"><br><br>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Edit" name="edit" class="btn btn-outline-light btn-lg px-5"><br><br>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+              <div class="form-outline">
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+              <div class="form-outline">
+              <input type="submit" value="Save" name="save" class="btn btn-outline-light btn-lg px-5"><br><br>
                   </div>
                 </div>
                 </div>

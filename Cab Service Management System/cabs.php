@@ -75,7 +75,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         echo "<td>".$row['model_name']."</td>";
         echo "<td>".$row['model_year']."</td>";
         echo "<td>".$row['purchase_date']."</td>";
-        echo "<td><a href='edit_cab.php?logcount=".$logcount."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
+        echo "<td><a href='edit_cab.php?logcount=".$logcount."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }
