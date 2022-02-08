@@ -1,8 +1,8 @@
 <?php
 include("config.php");
 
-if(isset($_GET['cab'])){
-    $cab=$_GET["cab"];
+if(isset($_GET['logcount'])){
+    $logcount=$_GET["logcount"];
 }
 $res = mysqli_query($mysqli, "select * from cabtb");
 ?>
@@ -25,7 +25,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php?cab=<?php echo $cab?>">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
@@ -41,7 +41,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
                     </li>
                 </ul>
                 <?php
-                if ($cab==1){
+                if ($logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                 }
                 else{
@@ -53,7 +53,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?add_cab=<?php echo $cab?>'><button type="button" class="btn btn-dark" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
@@ -75,7 +75,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         echo "<td>".$row['model_name']."</td>";
         echo "<td>".$row['model_year']."</td>";
         echo "<td>".$row['purchase_date']."</td>";
-        echo "<td><a href='edit_cab.php?edit_cab=".$cab."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
+        echo "<td><a href='edit_cab.php?logcount=".$logcount."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }
