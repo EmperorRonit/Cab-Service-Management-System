@@ -10,7 +10,7 @@ if(isset($_POST['save'])){
   $model_year = $_POST['model_year'];
   $purchase_date = $_POST['purchase_date'];
 
-  $image = rand(1000, 100000)."-". $_FILES['image']['name'];
+  $image = $_FILES['image']['name'];
   $file_loc = $_FILES['image']['tmp_name'];
   $folder="upload/";
   move_uploaded_file($file_loc, $folder.$image);
