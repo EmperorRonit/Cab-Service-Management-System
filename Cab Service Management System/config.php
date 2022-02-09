@@ -4,5 +4,5 @@ $dbName = 'CSMS';
 $dbUser = 'root';
 $dbPassword = '';
 
-$mysqli = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName)
+$mysqli = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
 ?>

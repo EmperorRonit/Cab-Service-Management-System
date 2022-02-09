@@ -4,7 +4,12 @@ if(isset($_GET['logcount'])){
   $logcount=$_GET["logcount"];
 }
 
-if(isset($_POST['save'])){
+$driver_id = $_GET['driver_id'];
+$sql = "SELECT * FROM drivertb WHERE driver_id='".$driver_id."'";
+$res = mysqli_query($mysqli, $sql);
+$row = mysqli_fetch_array($res);
+
+if(isset($_POST['edit'])){
   $Name = $_POST['Name'];
   $Street_addr = $_POST['Street_addr'];
   $City = $_POST['City'];
@@ -39,26 +44,36 @@ if(isset($_POST['save'])){
   $folder="upload/";
   move_uploaded_file($file_loc, $folder.$Driver_image);
 
-
-      $sql = "insert into drivertb(Name, Street_addr, City, State, Zip_code, Phone_no, Email_id, Birth_date, Work_exp, Bank_name, Account_no, IFSC, Driving_licenses_no, Driving_licenses, Adhaar_no, Adhaar, Joining_date, Driver_image, Gender, Age, Education) 
-      values('$Name', '$Street_addr', '$City', '$State', '$Zip_code', '$Phone_no', '$Email_id', '$Birth_date', '$Work_exp', '$Bank_name', '$Account_no', '$IFSC', 
-            '$Driving_licenses_no', '$Driving_licenses', '$Adhaar_no', '$Adhaar', '$Joining_date', '$Driver_image', '$Gender', '$Age', '$Education')";
+  $sql = "UPDATE drivertb set Name='".$Name."', 
+  Street_addr='".$Street_addr."', City='".$City."', State='".$State."', Zip_code='".$Zip_code."', Phone_no='".$Phone_no."', 
+  Email_id='".$Email_id."', Birth_date='".$Birth_date."', Work_exp='".$Work_exp."', Bank_name='".$Bank_name."',
+  Account_no='".$Account_no."', IFSC='".$IFSC."', Driving_licenses_no='".$Driving_licenses_no."', Adhaar_no='".$Adhaar_no."',
+  Adhaar='".$Adhaar."', Joining_date='".$Joining_date."', Driver_image='".$Driver_image."', Gender='".$Gender."', Age='".$Age."',
+  Education='".$Education."' WHERE driver_id='".$driver_id."'";
   mysqli_query($mysqli, $sql);
-
-
-  $res = mysqli_query($mysqli, "select * from drivertb where Adhaar_no = '$Adhaar_no'");
-  $result = mysqli_fetch_array($res);
-  if($result){
-  echo"<script>alert('Saved Succesfully')</script>";
+  if(mysqli_query($mysqli, $sql)){
+    echo"<script>alert('Edited Succesfully')</script>"; 
   }
   else{
-    echo"<script>alert('Faild Saved')</script>";
+    echo"<script>alert('Faild to Edited')</script>"; 
   }
+}
+
+if(isset($_POST['delete'])){
+    $sql = "DELETE FROM drivertb
+    WHERE driver_id='".$driver_id."'";
+    mysqli_query($mysqli, $sql);
+    if(mysqli_query($mysqli, $sql)){
+        echo"<script>alert('Deleted Succesfully')</script>";
+    }
+    else{
+        echo"<script>alert('Failed to Delete')</script>";
+    }
 }
 ?>
 <html>
     <head>
-        <title>Add Drvier</title>
+        <title>Edit Drvier</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,7 +123,7 @@ if(isset($_POST['save'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1900px; width: 1000px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 2000px; width: 1000px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
@@ -116,7 +131,7 @@ if(isset($_POST['save'])){
 
             <div class="row">
               <div class="col-md-6 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Add Drvier Details</h1><br>
+              <h1 class="fw-bold mb-2 text-uppercase">Edit Drvier Details</h1><br>
                 </div>
                 </div>
 
@@ -134,7 +149,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-10 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Full name" name="Name"/>
+                    <input type="text" class="form-control form-control" placeholder="Full name" name="Name" value="<?php echo $row['Name'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -147,7 +162,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="10 Digit" name="Phone_no"/>
+                  <input type="text" class="form-control form-control" placeholder="Phone No." name="Phone_no" value="<?php echo $row['Phone_no'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -157,7 +172,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="xyz@gmail.com" name="Email_id"/>
+                    <input type="text" class="form-control form-control" placeholder="xyz@gmail.com" name="Email_id" value="<?php echo $row['Email_id'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -171,7 +186,11 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="Birth_date" id="" class="form-control form-control">
+                  <input type="date" name="Birth_date" id="" class="form-control form-control" value="<?php echo $row['Birth_date'];?>">
+                </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
                 </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -181,11 +200,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="In Years" name="Work_exp"/>
-                </div>
-                </div>
-                <div class="col-md-2 mb-4">
-                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="In Years" name="Work_exp" value="<?php echo $row['Work_exp'];?>"/>
                 </div>
                 </div>
                 </div>
@@ -203,16 +218,17 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
+                  <a href="upload/<?php echo $row['Driver_image']?>" class="form-control form-control">view</a>
+                  </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
                   <h4 class="fw-bold mb-2">Age:</h4>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="In Years" name="Age"/>
-                  </div>
-                </div>
-                <div class="col-md-2 mb-4">
-                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="In Years" name="Age" value="<?php echo $row['Age'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -225,7 +241,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Male">
+                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Male" <?php if($row['Gender']=="Male") echo "checked" ?>>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Male
                   </label>
@@ -233,7 +249,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Female">
+                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Female" <?php if($row['Gender']=="Female") echo "checked" ?>>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Female
                   </label>
@@ -241,7 +257,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Other">
+                  <input class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1" value="Other" <?php if($row['Gender']=="Other") echo "checked" ?>>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Other
                   </label>
@@ -261,7 +277,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-10 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Mention Last Qualification" name="Education"/>
+                    <input type="text" class="form-control form-control" placeholder="Mention Last Qualification" name="Education" value="<?php echo $row['Education'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -280,7 +296,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-10 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="House no/Line no/Landmark" name="Street_addr"/>
+                    <input type="text" class="form-control form-control" placeholder="House no/Line no/Landmark" name="Street_addr" value="<?php echo $row['Street_addr'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -293,7 +309,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="City" name="City"/>
+                  <input type="text" class="form-control form-control" placeholder="City" name="City" value="<?php echo $row['City'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -303,7 +319,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="State" name="State"/>
+                    <input type="text" class="form-control form-control" placeholder="State" name="State" value="<?php echo $row['State'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -316,7 +332,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="6 digit" name="Zip_code"/>
+                  <input type="text" class="form-control form-control" placeholder="6 digit" name="Zip_code" value="<?php echo $row['Zip_code'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -343,7 +359,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-10 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Bank name" name="Bank_name"/>
+                    <input type="text" class="form-control form-control" placeholder="Bank name" name="Bank_name" value="<?php echo $row['Bank_name'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -356,7 +372,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Account No." name="Account_no"/>
+                  <input type="text" class="form-control form-control" placeholder="Account No." name="Account_no" value="<?php echo $row['Account_no'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -366,7 +382,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="IFSC Code" name="IFSC"/>
+                    <input type="text" class="form-control form-control" placeholder="IFSC Code" name="IFSC" value="<?php echo $row['IFSC'];?>"/>
                   </div>
                 </div>
                 </div>
@@ -385,7 +401,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Driving Licence No." name="Driving_licenses_no"/>
+                  <input type="text" class="form-control form-control" placeholder="Driving Licence No." name="Driving_licenses_no" value="<?php echo $row['Driving_licenses_no'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -395,6 +411,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
+                  <a href="upload/<?php echo $row['Driving_licenses']?>" class="form-control form-control">view</a>
                   </div>
                 </div>
                 </div>
@@ -407,7 +424,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Aadhar No." name="Adhaar_no"/>
+                  <input type="text" class="form-control form-control" placeholder="Aadhar No." name="Adhaar_no" value="<?php echo $row['Adhaar_no'];?>"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -417,6 +434,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
+                  <a href="upload/<?php echo $row['Adhaar']?>" class="form-control form-control">view</a>
                   </div>
                 </div>
                 </div>
@@ -437,7 +455,28 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="Joining_date" id="" class="form-control form-control">
+                  <input type="date" name="Joining_date" id="" class="form-control form-control" value="<?php echo $row['Joining_date'];?>">
+                  </div>
+                </div>
+                </div>
+
+                <br><div class="row">
+              <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Registration Date:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="text" name="Joining_date" id="" class="form-control form-control" value="<?php echo $row['Rge_date'];?>">
                   </div>
                 </div>
                 </div>
@@ -445,6 +484,7 @@ if(isset($_POST['save'])){
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
+              <input type="submit" value="Delete" name="delete" class="btn btn-outline-danger btn-lg px-5"><br><br>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -457,7 +497,7 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Save" name="save" class="btn btn-outline-light btn-lg px-5"><br><br>
+              <input type="submit" value="Edit" name="edit" class="btn btn-outline-light btn-lg px-5"><br><br>
                   </div>
                 </div>
                 </div>
