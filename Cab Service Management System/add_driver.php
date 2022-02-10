@@ -26,17 +26,17 @@ if(isset($_POST['save'])){
 
   $Driving_licenses = $_FILES['Driving_licenses']['name'];
   $file_loc = $_FILES['Driving_licenses']['tmp_name'];
-  $folder="upload/";
+  $folder="upload/driver_dl/";
   move_uploaded_file($file_loc, $folder.$Driving_licenses);
 
   $Adhaar = $_FILES['Adhaar']['name'];
   $file_loc = $_FILES['Adhaar']['tmp_name'];
-  $folder="upload/";
+  $folder="upload/driver_adhaar/";
   move_uploaded_file($file_loc, $folder.$Adhaar);
   
   $Driver_image = $_FILES['Driver_image']['name'];
   $file_loc = $_FILES['Driver_image']['tmp_name'];
-  $folder="upload/";
+  $folder="upload/driver_photo/";
   move_uploaded_file($file_loc, $folder.$Driver_image);
 
 
@@ -193,7 +193,7 @@ if(isset($_POST['save'])){
                 <div class="row">
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Driver Image:</h4>
+                  <h4 class="fw-bold mb-2">Photo:</h4>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">

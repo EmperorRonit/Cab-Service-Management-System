@@ -18,7 +18,7 @@ if(isset($_POST['edit'])){
 
     $image = $_FILES['image']['name'];
   $file_loc = $_FILES['image']['tmp_name'];
-  $folder="upload/";
+  $folder="upload/cab_image/";
   move_uploaded_file($file_loc, $folder.$image);
       $sql = "UPDATE cabtb set rg_no='".$rg_no."', 
     model_name='".$model_name."', model_year='".$model_year."', purchase_date='".$purchase_date."', image='".$image."'

@@ -12,7 +12,7 @@ if(isset($_POST['save'])){
 
   $image = $_FILES['image']['name'];
   $file_loc = $_FILES['image']['tmp_name'];
-  $folder="upload/";
+  $folder="upload/cab_image/";
   move_uploaded_file($file_loc, $folder.$image);
   $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, image)
   values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$image')";
