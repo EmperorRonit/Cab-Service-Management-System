@@ -31,10 +31,10 @@ $res = mysqli_query($mysqli, "select * from drivertb");
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Employees</a>
@@ -53,7 +53,7 @@ $res = mysqli_query($mysqli, "select * from drivertb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Driver</h2><a href='add_driver.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Driver</h2><a href='add_driver.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
@@ -62,7 +62,10 @@ $res = mysqli_query($mysqli, "select * from drivertb");
       <th scope="col">Name</th>
       <th scope="col">Phone</th>
       <th scope="col">Email</th>
-      <th scope="col">Zip Code</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Education</th>
+      <th scope="col">Joining Date</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -74,8 +77,11 @@ $res = mysqli_query($mysqli, "select * from drivertb");
         echo "<td>".$row['Name']."</td>";
         echo "<td>".$row['Phone_no']."</td>";
         echo "<td>".$row['Email_id']."</td>";
-        echo "<td>".$row['Zip_code']."</td>";
-        echo "<td><a href='edit_cab.php?logcount=".$logcount."&cab_id=".$row['cab_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Edit</button></a></td>";
+        echo "<td>".$row['Age']."</td>";
+        echo "<td>".$row['Gender']."</td>";
+        echo "<td>".$row['Education']."</td>";
+        echo "<td>".$row['Joining_date']."</td>";
+        echo "<td><a href='edit_driver.php?logcount=".$logcount."&driver_id=".$row['driver_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }

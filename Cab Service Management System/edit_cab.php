@@ -16,7 +16,7 @@ if(isset($_POST['edit'])){
     $model_year = $_POST['model_year'];
     $purchase_date = $_POST['purchase_date'];
 
-    $image = rand(1000, 100000)."-". $_FILES['image']['name'];
+    $image = $_FILES['image']['name'];
   $file_loc = $_FILES['image']['tmp_name'];
   $folder="upload/";
   move_uploaded_file($file_loc, $folder.$image);
@@ -36,12 +36,6 @@ if(isset($_POST['edit'])){
 }
 
 if(isset($_POST['delete'])){
-    $model_name = $_POST['model_name'];
-    $rg_no = $_POST['rg_no'];
-    $model_year = $_POST['model_year'];
-    $purchase_date = $_POST['purchase_date'];
-    $image = $_FILES['image'];
-
     $sql = "DELETE FROM cabtb
     WHERE cab_id='" . $cab_id. "'";
     mysqli_query($mysqli, $sql);
@@ -192,7 +186,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                    <a href="upload/<?php echo $row['image']?>" class="form-control form-control">view Image</a>
+                    <a href="upload/<?php echo $row['image']?>" class="form-control form-control">view</a>
                 </div>
                 </div>
                 </div>
@@ -200,7 +194,7 @@ if(isset($_POST['delete'])){
                 <br><br><br><div class="row">
               <div class="col-md-6 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Delete" name="delete" class="btn btn-danger btn-lg px-5"><br><br>
+              <input type="submit" value="Delete" name="delete" class="btn btn-outline-danger btn-lg px-5"><br><br>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">

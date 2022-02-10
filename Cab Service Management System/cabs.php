@@ -31,10 +31,10 @@ $res = mysqli_query($mysqli, "select * from cabtb");
                         <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Employees</a>
@@ -53,7 +53,7 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
