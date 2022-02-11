@@ -23,12 +23,12 @@ mysqli_query($mysqli, $sql);
 
   $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
   $result = mysqli_fetch_array($res);
-  if($result){
-    echo"<script>alert('Saved Succesfully')</script>";
-  }
-  else{
-    echo"<script>alert('Faild to Saved')</script>";
-  }
+    if($result){
+      echo"<script>alert('Saved Succesfully')</script>";
+    }
+    else{
+      echo"<script>alert('Faild Saved')</script>";
+    }
 }
 ?>
 <html>
@@ -60,10 +60,10 @@ mysqli_query($mysqli, $sql);
                         <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
                     </li>
                 </ul>
                 <?php

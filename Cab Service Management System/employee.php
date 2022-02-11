@@ -37,7 +37,7 @@ $res = mysqli_query($mysqli, "select * from employeetb");
                         <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
                     </li>
                 </ul>
                 <?php

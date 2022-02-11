@@ -35,7 +35,7 @@ if(isset($_POST['save'])){
   move_uploaded_file($file_loc, $folder.$Adhaar);
   
   $Driver_image = $_FILES['Driver_image']['name'];
-  $file_loc = $_FILES['Driver_image']['tmp_name'];
+  $file_loc = rand(1, 1000000)."-".$_FILES['Driver_image']['tmp_name'];
   $folder="upload/driver_photo/";
   move_uploaded_file($file_loc, $folder.$Driver_image);
 
@@ -88,7 +88,7 @@ if(isset($_POST['save'])){
                         <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
                     </li>
                 </ul>
                 <?php

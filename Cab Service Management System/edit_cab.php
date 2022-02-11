@@ -74,10 +74,10 @@ if(isset($_POST['delete'])){
                         <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
                     </li>
                 </ul>
                 <?php
@@ -186,7 +186,7 @@ if(isset($_POST['delete'])){
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                    <a href="upload/<?php echo $row['image']?>" class="form-control form-control">view</a>
+                    <a href="upload/cab_image/<?php echo $row['image']?>" class="form-control form-control">view</a>
                 </div>
                 </div>
                 </div>
