@@ -1,10 +1,45 @@
 <?php
 include("config.php");
-
+require("FPDF/fpdf.php");
 if(isset($_GET['logcount'])){
     $logcount=$_GET["logcount"];
 }
 $res = mysqli_query($mysqli, "select * from cabtb");
+
+if(isset($_POST['log'])){
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',20);
+    $pdf->Cell(60,20,'');
+    $pdf->Cell(10,20,'Cab Log Report');
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(20,10,'');
+    $pdf->Cell(10,10,'ID',1);
+    $pdf->Cell(30,10,'Registration No.',1);
+    $pdf->Cell(50,10,'Model Name',1);
+    $pdf->Cell(25,10,'Model Year',1);
+    $pdf->Cell(30,10,'Purchase Date',1);
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','',10);
+    while($row = mysqli_fetch_array($res)){
+        $pdf->Cell(20,10,'');
+        $pdf->Cell(10,8,$row['cab_id'],1);
+        $pdf->Cell(30,8,$row['rg_no'],1);
+        $pdf->Cell(50,8,$row['model_name'],1);
+        $pdf->Cell(25,8,$row['model_year'],1);
+        $pdf->Cell(30,8,$row['purchase_date'],1);
+        $pdf->Ln();
+    }
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('d-m-y h:i:s');
+    $pdf->Ln();
+    $pdf->Cell(120,8);
+    $pdf->Cell(10,8,'Date - '.$date,);
+    $pdf->Output();
+}
 ?>
 <html>
     <head>
@@ -53,7 +88,10 @@ $res = mysqli_query($mysqli, "select * from cabtb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Cabs</h2><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 15px;">Cabs</h2>
+        <form action="" method="post" style="margin-top: 10px;">
+    <input type="submit" value="Log" name="log" class="btn btn-outline-dark btn-lg">    
+    </form><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -70px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
