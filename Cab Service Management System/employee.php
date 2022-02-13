@@ -1,10 +1,43 @@
 <?php
 include("config.php");
-
+require("FPDF/fpdf.php");
 if(isset($_GET['logcount'])){
     $logcount=$_GET["logcount"];
 }
 $res = mysqli_query($mysqli, "select * from employeetb");
+
+if(isset($_POST['log'])){
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',20);
+    $pdf->Cell(55,20,'');
+    $pdf->Cell(10,20,'Employee Log Report');
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(10,10,'ID',1);
+    $pdf->Cell(50,10,'Name',1);
+    $pdf->Cell(60,10,'Email',1);
+    $pdf->Cell(20,10,'Education',1);
+    $pdf->Cell(30,10,'Joining Date',1);
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','',10);
+    while($row = mysqli_fetch_array($res)){
+        $pdf->Cell(10,8,$row['employee_id'],1);
+        $pdf->Cell(50,8,$row['name'],1);
+        $pdf->Cell(60,8,$row['email'],1);
+        $pdf->Cell(20,8,$row['education'],1);
+        $pdf->Cell(30,8,$row['joining_date'],1);
+        $pdf->Ln();
+    }
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('d-m-y h:i:s');
+    $pdf->Ln();
+    $pdf->Cell(120,8);
+    $pdf->Cell(10,8,'Date - '.$date,);
+    $pdf->Output();
+}
 ?>
 <html>
     <head>
@@ -53,7 +86,11 @@ $res = mysqli_query($mysqli, "select * from employeetb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 15px;">Employee</h2><a href='add_employee.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -40px;">Add</button></a>
+        <h2 style="margin-top: 20px;">Employee</h2>
+        <form action="" method="post" style="margin-top: 10px;">
+    <input type="submit" value="Log" name="log" class="btn btn-outline-dark btn-lg">    
+    </form>
+        <a href='add_employee.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1225px; margin-top: -70px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">
         <thead>
@@ -86,7 +123,7 @@ $res = mysqli_query($mysqli, "select * from employeetb");
         echo"</tbody>";
     }
     ?>
-    </table>            
+    </table>     
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
