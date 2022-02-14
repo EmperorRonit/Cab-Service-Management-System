@@ -16,6 +16,7 @@ if(isset($_POST['save'])){
   $zip_code = $_POST['zip_code'];
   $education = $_POST['education'];
   $percentage = $_POST['percentage'];
+  $designation = $_POST['designation'];
   $bank_name = $_POST['bank_name'];
   $ac_no = $_POST['ac_no'];
   $ifsc = $_POST['ifsc'];
@@ -45,9 +46,9 @@ if(isset($_POST['save'])){
   $folder="upload/emp_resume/";
   move_uploaded_file($file_loc, $folder.$resume);
 
-    $sql = "insert into employeetb(name, phone, email, dob, work_exp, photo, address, city, state, zip_code, education, percentage, bank_name, ac_no, 
+    $sql = "insert into employeetb(name, phone, email, dob, work_exp, photo, address, city, state, zip_code, education, percentage, designation, bank_name, ac_no, 
     ifsc, adhaar_no, adhaar, pan_no, pan, resume, joining_date, gender, age) 
-            values('$name', '$phone', '$email', '$dob', '$work_exp', '$photo', '$address', '$city', '$state', '$zip_code', '$education', '$percentage', '$bank_name', 
+            values('$name', '$phone', '$email', '$dob', '$work_exp', '$photo', '$address', '$city', '$state', '$zip_code', '$education', '$percentage', '$designation', '$bank_name', 
                     '$ac_no', '$ifsc', '$adhaar_no', '$adhaar', '$pan_no', '$pan', '$resume', '$joining_date', '$gender', '$age')";
   mysqli_query($mysqli, $sql);
 
@@ -199,7 +200,7 @@ if(isset($_POST['save'])){
                 <div class="row">
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Driver Image:</h4>
+                  <h4 class="fw-bold mb-2">Photo:</h4>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -280,6 +281,18 @@ if(isset($_POST['save'])){
                     <input type="text" class="form-control form-control" placeholder="Percentage" name="percentage"/>
                   </div>
                 </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Designation:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Designation" name="designation"/>
+                  </div>
                 </div>
 
                  <br><br><div class="row">
