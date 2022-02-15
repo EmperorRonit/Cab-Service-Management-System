@@ -50,12 +50,7 @@ if(isset($_POST['save'])){
     ifsc, adhaar_no, adhaar, pan_no, pan, resume, joining_date, gender, age) 
             values('$name', '$phone', '$email', '$dob', '$work_exp', '$photo', '$address', '$city', '$state', '$zip_code', '$education', '$percentage', '$designation', '$bank_name', 
                     '$ac_no', '$ifsc', '$adhaar_no', '$adhaar', '$pan_no', '$pan', '$resume', '$joining_date', '$gender', '$age')";
-  mysqli_query($mysqli, $sql);
-
-
-  $res = mysqli_query($mysqli, "select * from employeetb where adhaar_no = '$adhaar_no'");
-  $result = mysqli_fetch_array($res);
-  if($result){
+  if(mysqli_query($mysqli, $sql)){
   echo"<script>alert('Saved Succesfully')</script>";
   }
   else{

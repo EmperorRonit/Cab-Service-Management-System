@@ -62,7 +62,6 @@ if(isset($_POST['edit'])){
 if(isset($_POST['delete'])){
     $sql = "DELETE FROM drivertb
     WHERE driver_id='".$driver_id."'";
-    mysqli_query($mysqli, $sql);
     if(mysqli_query($mysqli, $sql)){
         echo"<script>alert('Deleted Succesfully')</script>";
     }

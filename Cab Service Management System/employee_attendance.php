@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+require("FPDF/fpdf.php");
 if(isset($_GET['logcount'])){
   $logcount=$_GET["logcount"];
 }
@@ -16,21 +17,51 @@ if(isset($_POST['save'])){
   $employee_name = $_POST['employee_name'];
   $designation = $_POST['designation'];
   $attendance = $_POST['attendance'];
-  $sqlins = "insert into employee_attendancetb(employeeid, employee_name, attendance)
-  values('$employeeid', '$employee_name', '$attendance')";
-mysqli_query($mysqli, $sqlins);
-      
-
-  
-
-  $rest = mysqli_query($mysqli, "select * from employee_attendancetb where employeeid = '$employeeid'");
-  $result = mysqli_fetch_array($rest);
-    if($result){
+  $sql = "insert into employee_attendancetb(employeeid, employee_name, designation, attendance)
+  values('$employeeid', '$employee_name','$designation', '$attendance')";
+    if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Saved Succesfully')</script>";
     }
     else{
-      echo"<script>alert('Faild Saved')</script>";
+      echo"<script>alert('Faild to Save')</script>";
     }
+}
+
+$res = mysqli_query($mysqli, "select * from employee_attendancetb");
+
+if(isset($_POST['log'])){
+  $pdf = new FPDF();
+  $pdf->AddPage();
+  $pdf->SetFont('Arial','B',20);
+  $pdf->Cell(45,20,'');
+  $pdf->Cell(10,20,'Employee Attendance Log Report');
+  $pdf->Ln();
+
+  $pdf->SetFont('Arial','B',10);
+  $pdf->Cell(10,10,'ID',1);
+  $pdf->Cell(10,10,'E ID',1);
+  $pdf->Cell(60,10,'Name',1);
+  $pdf->Cell(40,10,'Designation',1);
+  $pdf->Cell(30,10,'Attendance',1);
+  $pdf->Cell(40,10,'Date',1);
+  $pdf->Ln();
+
+  $pdf->SetFont('Arial','',10);
+  while($row = mysqli_fetch_array($res)){
+      $pdf->Cell(10,8,$row['attendance_id'],1);
+      $pdf->Cell(10,8,$row['employeeid'],1);
+      $pdf->Cell(60,8,$row['employee_name'],1);
+      $pdf->Cell(40,8,$row['designation'],1);
+      $pdf->Cell(30,8,$row['attendance'],1);
+      $pdf->Cell(40,8,$row['date'],1);
+      $pdf->Ln();
+  }
+  date_default_timezone_set('Asia/Kolkata');
+  $date = date('d-m-y h:i:s');
+  $pdf->Ln();
+  $pdf->Cell(140,8);
+  $pdf->Cell(10,8,'Date - '.$date,);
+  $pdf->Output();
 }
 ?>
 <html>
@@ -81,6 +112,7 @@ mysqli_query($mysqli, $sqlins);
         </div>
     </nav>
     <div class="container">
+    
     <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 550px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -105,7 +137,7 @@ mysqli_query($mysqli, $sqlins);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="ID" name="employeeid" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>"/>
+                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -127,7 +159,7 @@ mysqli_query($mysqli, $sqlins);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" name="employee_name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name"/>
                   </div>
                 </div>
                 </div>
@@ -140,7 +172,7 @@ mysqli_query($mysqli, $sqlins);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" name="designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation"/>
                   </div>
                 </div>
                 </div>
@@ -172,6 +204,7 @@ mysqli_query($mysqli, $sqlins);
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
+              <input type="submit" value="Log Report" name="log" class="btn btn-outline-light btn-lg px-5"> 
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
