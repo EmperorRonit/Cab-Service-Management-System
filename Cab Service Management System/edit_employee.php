@@ -21,6 +21,7 @@ if(isset($_POST['edit'])){
   $zip_code = $_POST['zip_code'];
   $education = $_POST['education'];
   $percentage = $_POST['percentage'];
+  $designation = $_POST['designation'];
   $bank_name = $_POST['bank_name'];
   $ac_no = $_POST['ac_no'];
   $ifsc = $_POST['ifsc'];
@@ -216,7 +217,7 @@ if(isset($_POST['delete'])){
                 <div class="row">
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Driver Image:</h4>
+                  <h4 class="fw-bold mb-2">Photo:</h4>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -298,6 +299,18 @@ if(isset($_POST['delete'])){
                     <input type="text" class="form-control form-control" placeholder="Percentage" name="percentage" value="<?php echo $row['percentage'];?>"/>
                   </div>
                 </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Designation:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Designation" name="designation" value="<?php echo $row['designation'];?>"/>
+                  </div>
                 </div>
 
                  <br><br><div class="row">
