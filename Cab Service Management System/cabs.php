@@ -37,7 +37,7 @@ if(isset($_POST['log'])){
     $date = date('d-m-y h:i:s');
     $pdf->Ln();
     $pdf->Cell(120,8);
-    $pdf->Cell(10,8,'Date - '.$date,);
+    $pdf->Cell(10,8,'Date : '.$date,);
     $pdf->Output();
 }
 ?>
