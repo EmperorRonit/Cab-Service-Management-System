@@ -16,14 +16,7 @@ if(isset($_POST['save'])){
   move_uploaded_file($file_loc, $folder.$image);
   $sql = "insert into cabtb(rg_no, model_name, model_year, purchase_date, image)
   values('$rg_no', '$model_name', '$model_year', '$purchase_date', '$image')";
-mysqli_query($mysqli, $sql);
-      
-
-  
-
-  $res = mysqli_query($mysqli, "select * from cabtb where rg_no = '$rg_no'");
-  $result = mysqli_fetch_array($res);
-    if($result){
+    if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Saved Succesfully')</script>";
     }
     else{

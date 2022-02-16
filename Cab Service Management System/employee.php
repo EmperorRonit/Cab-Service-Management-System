@@ -18,7 +18,7 @@ if(isset($_POST['log'])){
     $pdf->Cell(10,10,'ID',1);
     $pdf->Cell(50,10,'Name',1);
     $pdf->Cell(60,10,'Email',1);
-    $pdf->Cell(20,10,'Education',1);
+    $pdf->Cell(40,10,'Designation',1);
     $pdf->Cell(30,10,'Joining Date',1);
     $pdf->Ln();
 
@@ -27,14 +27,14 @@ if(isset($_POST['log'])){
         $pdf->Cell(10,8,$row['employee_id'],1);
         $pdf->Cell(50,8,$row['name'],1);
         $pdf->Cell(60,8,$row['email'],1);
-        $pdf->Cell(20,8,$row['education'],1);
+        $pdf->Cell(40,8,$row['designation'],1);
         $pdf->Cell(30,8,$row['joining_date'],1);
         $pdf->Ln();
     }
     date_default_timezone_set('Asia/Kolkata');
     $date = date('d-m-y h:i:s');
     $pdf->Ln();
-    $pdf->Cell(120,8);
+    $pdf->Cell(140,8);
     $pdf->Cell(10,8,'Date - '.$date,);
     $pdf->Output();
 }
@@ -88,7 +88,7 @@ if(isset($_POST['log'])){
     <div class="container">
         <h2 style="margin-top: 20px;">Employee</h2>
         <form action="" method="post" style="margin-top: 10px;">
-    <input type="submit" value="Log" name="log" class="btn btn-outline-dark btn-lg">    
+    <input type="submit" value="Log Report" name="log" class="btn btn-outline-dark btn-lg">    
     </form>
         <a href='add_employee.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1225px; margin-top: -70px;">Add</button></a>
         <br><br>
@@ -101,7 +101,7 @@ if(isset($_POST['log'])){
       <th scope="col">Email</th>
       <th scope="col">Age</th>
       <th scope="col">Gender</th>
-      <th scope="col">Education</th>
+      <th scope="col">Designation</th>
       <th scope="col">Joining Date</th>
       <th scope="col"></th>
     </tr>
@@ -116,7 +116,7 @@ if(isset($_POST['log'])){
         echo "<td>".$row['email']."</td>";
         echo "<td>".$row['age']."</td>";
         echo "<td>".$row['gender']."</td>";
-        echo "<td>".$row['education']."</td>";
+        echo "<td>".$row['designation']."</td>";
         echo "<td>".$row['joining_date']."</td>";
         echo "<td><a href='edit_employee.php?logcount=".$logcount."&employee_id=".$row['employee_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
         echo "</tr>";

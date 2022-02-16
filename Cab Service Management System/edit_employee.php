@@ -57,8 +57,6 @@ if(isset($_POST['edit'])){
             adhaar_no='".$adhaar_no."', adhaar='".$adhaar."', pan_no='".$pan_no."', pan='".$pan."', resume='".$resume."', 
             joining_date='".$joining_date."', gender='".$gender."', age='".$age."' WHERE employee_id='".$employee_id."'";
 
-  mysqli_query($mysqli, $sql);
-
   if(mysqli_query($mysqli, $sql)){
     echo"<script>alert('Edited Succesfully')</script>"; 
   }

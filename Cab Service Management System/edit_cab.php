@@ -23,7 +23,6 @@ if(isset($_POST['edit'])){
       $sql = "UPDATE cabtb set rg_no='".$rg_no."', 
     model_name='".$model_name."', model_year='".$model_year."', purchase_date='".$purchase_date."', image='".$image."'
     WHERE cab_id='" . $cab_id. "'";
-    mysqli_query($mysqli, $sql);
     if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Edited Succesfully')</script>"; 
     }

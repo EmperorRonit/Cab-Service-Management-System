@@ -90,7 +90,7 @@ if(isset($_POST['log'])){
     <div class="container">
         <h2 style="margin-top: 15px;">Cabs</h2>
         <form action="" method="post" style="margin-top: 10px;">
-    <input type="submit" value="Log" name="log" class="btn btn-outline-dark btn-lg">    
+    <input type="submit" value="Log Report" name="log" class="btn btn-outline-dark btn-lg">    
     </form><a href='add_cab.php?logcount=<?php echo $logcount?>'><button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 1220px; margin-top: -70px;">Add</button></a>
         <br><br>
     <table class="table table-striped table-dark">

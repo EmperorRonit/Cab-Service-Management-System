@@ -43,12 +43,7 @@ if(isset($_POST['save'])){
       $sql = "insert into drivertb(Name, Street_addr, City, State, Zip_code, Phone_no, Email_id, Birth_date, Work_exp, Bank_name, Account_no, IFSC, Driving_licenses_no, Driving_licenses, Adhaar_no, Adhaar, Joining_date, Driver_image, Gender, Age, Education) 
       values('$Name', '$Street_addr', '$City', '$State', '$Zip_code', '$Phone_no', '$Email_id', '$Birth_date', '$Work_exp', '$Bank_name', '$Account_no', '$IFSC', 
             '$Driving_licenses_no', '$Driving_licenses', '$Adhaar_no', '$Adhaar', '$Joining_date', '$Driver_image', '$Gender', '$Age', '$Education')";
-  mysqli_query($mysqli, $sql);
-
-
-  $res = mysqli_query($mysqli, "select * from drivertb where Adhaar_no = '$Adhaar_no'");
-  $result = mysqli_fetch_array($res);
-  if($result){
+  if(mysqli_query($mysqli, $sql)){
   echo"<script>alert('Saved Succesfully')</script>";
   }
   else{
