@@ -58,7 +58,9 @@ if(isset($_GET['logcount'])){
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>" name="pakcage">Package</a>
+                    </li>
                 </ul>
                 <?php
                 if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
