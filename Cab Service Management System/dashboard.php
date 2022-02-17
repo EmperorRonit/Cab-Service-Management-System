@@ -44,7 +44,7 @@ if(isset($_GET['logcount'])){
                      </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Drivers</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Driver Attendance</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                     </li>

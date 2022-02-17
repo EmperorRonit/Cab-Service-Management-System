@@ -6,19 +6,21 @@ if(isset($_GET['logcount'])){
 }
 
 if(isset($_POST['search'])){
-    $employee_id = $_POST['employeeid'];
-    $sql = "SELECT * FROM employeetb WHERE employee_id='".$employee_id."'";
+    $driver_id = $_POST['driver_id'];
+    $sql = "SELECT * FROM drivertb WHERE driver_id='".$driver_id."'";
     $res = mysqli_query($mysqli, $sql);
     $row = mysqli_fetch_array($res);
 }
 
 if(isset($_POST['save'])){
-  $employeeid = $_POST['employeeid'];
-  $employee_name = $_POST['employee_name'];
-  $designation = $_POST['designation'];
-  $attendance = $_POST['attendance'];
-  $sql = "insert into employee_attendancetb(employeeid, employee_name, designation, attendance)
-  values('$employeeid', '$employee_name','$designation', '$attendance')";
+  $driver_id = $_POST['driver_id'];
+  $driver_name = $_POST['driver_name'];
+  $source = $_POST['source'];
+  $destination = $_POST['destination'];
+  $trip_date = $_POST['trip_date'];
+  $duration = $_POST['duration'];
+  $sql = "insert into driver_attendancetb(driver_id, driver_name, source, destination, trip_date, duration)
+  values('$driver_id', '$driver_name', '$source', '$destination', '$trip_date', '$duration')";
     if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Saved Succesfully')</script>";
     }
@@ -27,33 +29,35 @@ if(isset($_POST['save'])){
     }
 }
 
-$res = mysqli_query($mysqli, "select * from employee_attendancetb");
+$res = mysqli_query($mysqli, "select * from driver_attendancetb");
 
 if(isset($_POST['log'])){
   $pdf = new FPDF();
   $pdf->AddPage();
   $pdf->SetFont('Arial','B',20);
   $pdf->Cell(45,20,'');
-  $pdf->Cell(10,20,'Employee Attendance Log Report');
+  $pdf->Cell(10,20,'Driver Attendance Log Report');
   $pdf->Ln();
 
   $pdf->SetFont('Arial','B',10);
   $pdf->Cell(10,10,'ID',1);
-  $pdf->Cell(10,10,'E ID',1);
+  $pdf->Cell(10,10,'D ID',1);
   $pdf->Cell(60,10,'Name',1);
-  $pdf->Cell(40,10,'Designation',1);
-  $pdf->Cell(30,10,'Attendance',1);
-  $pdf->Cell(40,10,'Date',1);
+  $pdf->Cell(30,10,'Source',1);
+  $pdf->Cell(30,10,'Destination',1);
+  $pdf->Cell(20,10,'Duration',1);
+  $pdf->Cell(25,10,'Date',1);
   $pdf->Ln();
 
   $pdf->SetFont('Arial','',10);
   while($row = mysqli_fetch_array($res)){
       $pdf->Cell(10,8,$row['attendance_id'],1);
-      $pdf->Cell(10,8,$row['employeeid'],1);
-      $pdf->Cell(60,8,$row['employee_name'],1);
-      $pdf->Cell(40,8,$row['designation'],1);
-      $pdf->Cell(30,8,$row['attendance'],1);
-      $pdf->Cell(40,8,$row['date'],1);
+      $pdf->Cell(10,8,$row['driver_id'],1);
+      $pdf->Cell(60,8,$row['driver_name'],1);
+      $pdf->Cell(30,8,$row['source'],1);
+      $pdf->Cell(30,8,$row['destination'],1);
+      $pdf->Cell(20,8,$row['duration']." hr",1);
+      $pdf->Cell(25,8,$row['trip_date'],1);
       $pdf->Ln();
   }
   date_default_timezone_set('Asia/Kolkata');
@@ -66,7 +70,7 @@ if(isset($_POST['log'])){
 ?>
 <html>
     <head>
-        <title>Employee Attendance</title>
+        <title>Driver Attendance</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -117,27 +121,27 @@ if(isset($_POST['log'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 600px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 700px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
             <form action="" method="post" enctype="multipart/form-data">
 
             <div class="row">
-              <div class="col-md-9 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Employee Attendance</h1><br>
+              <div class="col-md-8 mb-4">
+              <h1 class="fw-bold mb-2 text-uppercase">Driver Attendance</h1><br>
                 </div>
                 </div>
 
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                    <h4 class="fw-bold mb-2">Employee ID:</h4>
+                    <h4 class="fw-bold mb-2">Driver ID:</h4>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid"/>
+                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['driver_id'];}?>" name="driver_id"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -154,12 +158,12 @@ if(isset($_POST['log'])){
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Employee Name:</h4>
+                  <h4 class="fw-bold mb-2">Driver Name:</h4>
                   </div>
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['Name'];}?>" name="driver_name"/>
                   </div>
                 </div>
                 </div>
@@ -167,12 +171,25 @@ if(isset($_POST['log'])){
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Designation:</h4>
+                  <h4 class="fw-bold mb-2">Trip Source:</h4>
                   </div>
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation"/>
+                  <input type="text" class="form-control form-control" placeholder="Source" name="source"/>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Trip Destination:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="Destination" name="destination"/>
                   </div>
                 </div>
                 </div>
@@ -180,26 +197,26 @@ if(isset($_POST['log'])){
                 <div class="row">
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Attendance:</h4>
+                  <h4 class="fw-bold mb-2">Trip Date:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="date" name="trip_date" id="" class="form-control form-control">
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Duration:</h4>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Present">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Present
-                  </label>
-                  </div>
-                </div>
-                <div class="col-md-2 mb-4">
-                  <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Absent">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Absent
-                  </label>
+                    <input type="text" class="form-control form-control" placeholder="In Hours" name="duration"/>
                   </div>
                 </div>
                 </div>
+
 
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
