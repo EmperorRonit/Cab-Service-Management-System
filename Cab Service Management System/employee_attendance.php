@@ -27,14 +27,29 @@ if(isset($_POST['save'])){
     }
 }
 
-$res = mysqli_query($mysqli, "select * from employee_attendancetb");
+
 
 if(isset($_POST['log'])){
+  $employeeid = $_POST['employeeid'];
+  $employee_name = $_POST['employee_name'];
+  $designation = $_POST['designation'];
+  $attendance = $_POST['attendance'];
+  $res = mysqli_query($mysqli, "select * from employee_attendancetb where employeeid='".$employeeid."'");
+  
   $pdf = new FPDF();
   $pdf->AddPage();
   $pdf->SetFont('Arial','B',20);
-  $pdf->Cell(45,20,'');
-  $pdf->Cell(10,20,'Employee Attendance Log Report');
+  $pdf->Cell(55,20,'');
+  $pdf->Cell(50,20,'Attendance Log Report');
+  $pdf->Ln();
+  $pdf->SetFont('Arial','B',18);
+  $pdf->Cell(115,10,$employee_name);
+  $pdf->SetFont('Arial','B',12);
+  $pdf->Cell(10,8,"Employee ID : ".$employeeid);
+  $pdf->Ln();
+  $pdf->Cell(115,10,'');
+  $pdf->SetFont('Arial','B',12);
+  $pdf->Cell(10,8,"Designation : ".$designation);
   $pdf->Ln();
 
   $pdf->SetFont('Arial','B',10);

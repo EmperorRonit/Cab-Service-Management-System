@@ -129,7 +129,8 @@ if(isset($_POST['delete'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1900px; width: 1000px;">
+      <a href="employee_payment.php?logcount=<?php echo $logcount?>&employee_id=<?php echo $employee_id?>"><input type="submit" value="Pay" name="pay" class="btn btn-outline-dark btn-lg px-5"></a><br><br>
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1800px; width: 1000px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
@@ -511,17 +512,13 @@ if(isset($_POST['delete'])){
                 </div>
                 </div>
 
-                <br><br><div class="row">
+                <br><br><br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
               <input type="submit" value="Delete" name="delete" class="btn btn-outline-danger btn-lg px-5"><br><br>
                   </div>
                 </div>
-                <div class="col-md-3 mb-4">
-              <div class="form-outline">
-                  </div>
-                </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-md-6 mb-4">
               <div class="form-outline">
                   </div>
                 </div>
@@ -531,8 +528,7 @@ if(isset($_POST['delete'])){
                   </div>
                 </div>
                 </div>
-              
-            </form>       
+            </form>
             </div>
           </div>
         </div>
