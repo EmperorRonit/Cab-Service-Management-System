@@ -5,26 +5,24 @@ if(isset($_GET['logcount'])){
   $logcount=$_GET["logcount"];
 }
 
-
-    $employee_id = $_GET['employee_id'];
-    $sql = "SELECT * FROM employeetb WHERE employee_id='".$employee_id."'";
+    $driver_id = $_GET['driver_id'];
+    $sql = "SELECT * FROM drivertb WHERE driver_id='".$driver_id."'";
     $res = mysqli_query($mysqli, $sql);
     $row = mysqli_fetch_array($res);
 
 
 if(isset($_POST['save'])){
-  $employee_id = $_POST['employee_id'];
-  $employee_name = $_POST['employee_name'];
-  $designation = $_POST['designation'];
-  $salary_per_day = $_POST['salary_per_day'];
-  $present_days = $_POST['present_days'];
+  $driver_id = $_POST['driver_id'];
+  $driver_name = $_POST['driver_name'];
+  $trip_desc = $_POST['trip_desc'];
+  $pay_per_hr = $_POST['pay_per_hr'];
+  $duration = $_POST['duration'];
   $gross = $_POST['gross'];
-  $tds = $_POST['tds'];
   $pf = $_POST['pf'];
   $net = $_POST['net'];
-  $pyment_method = $_POST['pyment_method'];
-  $sql = "insert into employee_payment(employee_id, employee_name, designation, salary_per_day, present_days, gross, tds, pf, net, pyment_method)
-  values('$employee_id', '$employee_name','$designation', '$salary_per_day', '$present_days', '$gross', '$tds', '$pf', '$net', '$pyment_method')";
+  $payment_method = $_POST['payment_method'];
+  $sql = "insert into driver_payment(driver_id, driver_name, trip_desc, pay_per_hr, duration, gross, pf, net, payment_method)
+  values('$driver_id', '$driver_name','$trip_desc', '$pay_per_hr', '$duration', '$gross', '$pf', '$net', '$payment_method')";
     if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Saved Succesfully')</script>";
     }
@@ -35,8 +33,7 @@ if(isset($_POST['save'])){
 
 
 if(isset($_POST['log'])){
-    $designation = $_POST['designation'];
-  $res = mysqli_query($mysqli, "select * from employee_payment where employee_id='".$employee_id."'");
+  $res = mysqli_query($mysqli, "select * from driver_payment where driver_id='".$driver_id."'");
   $pdf = new FPDF();
   $pdf->AddPage();
   $pdf->SetFont('Arial','B',20);
@@ -44,36 +41,33 @@ if(isset($_POST['log'])){
   $pdf->Cell(50,20,'Payment Log Report');
   $pdf->Ln();
   $pdf->SetFont('Arial','B',18);
-  $pdf->Cell(115,10,$row['name']);
+  $pdf->Cell(150,10,$row['Name']);
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(10,8,"Employee ID : ".$employee_id);
+  $pdf->Cell(10,8,"Driver ID : ".$driver_id);
   $pdf->Ln();
-  $pdf->Cell(115,10,'');
-  $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(10,8,"Designation : ".$designation);
   $pdf->Ln();
 
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(25,10,'Salary Per Day',1);
-  $pdf->Cell(25,10,'Present Days',1);
-  $pdf->Cell(20,10,'Gross',1);
-  $pdf->Cell(20,10,'TDS',1);
-  $pdf->Cell(20,10,'PF',1);
-  $pdf->Cell(20,10,'Net',1);
-  $pdf->Cell(20,10,'Method',1);
-  $pdf->Cell(35,10,'Date',1);
+  $pdf->Cell(60,10,'Trip Description',1);
+  $pdf->Cell(20,10,'Pay Per hr.',1);
+  $pdf->Cell(13,10,'W. hrs.',1);
+  $pdf->Cell(17,10,'Gross',1);
+  $pdf->Cell(15,10,'PF',1);
+  $pdf->Cell(17,10,'Net',1);
+  $pdf->Cell(15,10,'Method',1);
+  $pdf->Cell(33,10,'Date',1);
   $pdf->Ln();
 
   $pdf->SetFont('Arial','',8);
   while($rows = mysqli_fetch_array($res)){
-      $pdf->Cell(25,8,$rows['salary_per_day'],1);
-      $pdf->Cell(25,8,$rows['present_days'],1);
-      $pdf->Cell(20,8,$rows['gross'],1);
-      $pdf->Cell(20,8,$rows['tds'],1);
-      $pdf->Cell(20,8,$rows['pf'],1);
-      $pdf->Cell(20,8,$rows['net'],1);
-      $pdf->Cell(20,8,$rows['pyment_method'],1);
-      $pdf->Cell(35,8,$rows['date_of_slip'],1);
+      $pdf->Cell(60,8,$rows['trip_desc'],1);
+      $pdf->Cell(20,8,$rows['pay_per_hr'],1);
+      $pdf->Cell(13,8,$rows['duration'],1);
+      $pdf->Cell(17,8,$rows['gross'],1);
+      $pdf->Cell(15,8,$rows['pf'],1);
+      $pdf->Cell(17,8,$rows['net'],1);
+      $pdf->Cell(15,8,$rows['payment_method'],1);
+      $pdf->Cell(33,8,$rows['date_of_slip'],1);
       $pdf->Ln();
   }
   date_default_timezone_set('Asia/Kolkata');
@@ -85,65 +79,62 @@ if(isset($_POST['log'])){
 }
 
 if(isset($_POST['calculate'])){
-    $salary_per_day = $_POST['salary_per_day'];
-    $present_days = $_POST['present_days'];
-    $gross = $salary_per_day*$present_days;
-    $tds = $gross*0.05;
+    $trip_desc = $_POST['trip_desc'];
+    $pay_per_hr = $_POST['pay_per_hr'];
+    $duration = $_POST['duration'];
+    $gross = $pay_per_hr*$duration;
     $pf = $gross*0.02;
-    $net = $gross-($tds+$pf);
+    $net = $gross-$pf;
 }
 
 if(isset($_POST['slip'])){
-    $employee_id = $_POST['employee_id'];
-    $employee_name = $_POST['employee_name'];
-    $designation = $_POST['designation'];
-    $salary_per_day = $_POST['salary_per_day'];
-    $present_days = $_POST['present_days'];
-    $gross = $_POST['gross'];
-    $tds = $_POST['tds'];
-    $pf = $_POST['pf'];
-    $net = $_POST['net'];
-    $pyment_method = $_POST['pyment_method'];
-  $pdf = new FPDF();
-  $pdf->AddPage();
-  $pdf->SetFont('Arial','B',20);
-  $pdf->Cell(65,20,'');
-  $pdf->Cell(50,20,'Salary Slip');
+    $driver_id = $_POST['driver_id'];
+  $driver_name = $_POST['driver_name'];
+  $trip_desc = $_POST['trip_desc'];
+  $pay_per_hr = $_POST['pay_per_hr'];
+  $duration = $_POST['duration'];
+  $gross = $_POST['gross'];
+  $pf = $_POST['pf'];
+  $net = $_POST['net'];
+  $payment_method = $_POST['payment_method'];
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',20);
+    $pdf->Cell(70,20,'');
+    $pdf->Cell(50,20,'Pay Slip');
   $pdf->Ln();
   $pdf->SetFont('Arial','B',18);
-  $pdf->Cell(115,10,$employee_name);
+  $pdf->Cell(115,10,$driver_name);
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(10,8,"Employee ID : ".$employee_id);
+  $pdf->Cell(10,8,"Driver ID : ".$driver_id);
   $pdf->Ln();
-  $pdf->Cell(115,10,'');
-  $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(10,8,"Designation : ".$designation);
-  $pdf->Ln();
+
   date_default_timezone_set('Asia/Kolkata');
   $date = date('d-m-y h:i:s');
   $pdf->Cell(115,8);
   $pdf->Cell(10,8,'Date : '.$date,);
   $pdf->Ln();
+  $pdf->Ln();
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(90,10,'Salary Per Day',1);
+  $pdf->Cell(90,10,'Trip Description',1);
   $pdf->SetFont('Arial','',12);
-  $pdf->Cell(90,10,$salary_per_day,1);
+  $pdf->Cell(90,10,$trip_desc,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(90,10,'Present Days',1);
+  $pdf->Cell(90,10,'Pay Per Hour',1);
   $pdf->SetFont('Arial','',12);
-  $pdf->Cell(90,10,$present_days,1);
+  $pdf->Cell(90,10,$pay_per_hr,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(90,10,'Gross Salary',1);
+  $pdf->Cell(90,10,'Working Hours',1);
+  $pdf->SetFont('Arial','',12);
+  $pdf->Cell(90,10,$duration,1);
+  $pdf->Ln();
+  $pdf->SetFont('Arial','B',12);
+  $pdf->Cell(90,10,'Gross Pay',1);
   $pdf->SetFont('Arial','',12);
   $pdf->Cell(90,10,$gross,1);
-  $pdf->Ln();
-  $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(90,10,'TDS 5%',1);
-  $pdf->SetFont('Arial','',12);
-  $pdf->Cell(90,10,$tds,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',12);
   $pdf->Cell(90,10,'PF 2%',1);
@@ -151,14 +142,14 @@ if(isset($_POST['slip'])){
   $pdf->Cell(90,10,$pf,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',12);
-  $pdf->Cell(90,10,'Net Salary',1);
+  $pdf->Cell(90,10,'Net Pay',1);
   $pdf->SetFont('Arial','',12);
   $pdf->Cell(90,10,$net,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',12);
   $pdf->Cell(90,10,'Payment Method',1);
   $pdf->SetFont('Arial','',12);
-  $pdf->Cell(90,10,$pyment_method,1);
+  $pdf->Cell(90,10,$payment_method,1);
   $pdf->Ln();
   $pdf->SetFont('Arial','B',14);
   $pdf->Cell(90,12,'Amount Payble',1);
@@ -177,7 +168,7 @@ if(isset($_POST['slip'])){
 ?>
 <html>
     <head>
-        <title>Employee Payment</title>
+        <title>Driver Payment</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -235,20 +226,20 @@ if(isset($_POST['slip'])){
             <form action="" method="post" enctype="multipart/form-data">
 
             <div class="row">
-              <div class="col-md-6 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Employee Payment</h1><br>
+              <div class="col-md-5 mb-4">
+              <h1 class="fw-bold mb-2 text-uppercase">Driver Payment</h1><br>
                 </div>
                 </div>
 
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                    <h4 class="fw-bold mb-2">Employee ID:</h4>
+                    <h4 class="fw-bold mb-2">Driver ID:</h4>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php echo $row['employee_id'];?>" name="employee_id"/>
+                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php echo $row['driver_id'];?>" name="driver_id"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -264,25 +255,26 @@ if(isset($_POST['slip'])){
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Employee Name:</h4>
+                  <h4 class="fw-bold mb-2">Driver Name:</h4>
                   </div>
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['name'];?>" name="employee_name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['Name'];?>" name="driver_name"/>
                   </div>
                 </div>
                 </div>
+                
 
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Designation:</h4>
+                  <h4 class="fw-bold mb-2">Trip Description:</h4>
                   </div>
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php echo $row['designation'];?>" name="designation"/>
+                  <input type="text" class="form-control form-control" placeholder="Trip Description" name="trip_desc" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $trip_desc;}?>"/>
                   </div>
                 </div>
                 </div>
@@ -290,22 +282,22 @@ if(isset($_POST['slip'])){
                 <div class="row">
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Salary Per Day:</h4>
+                  <h4 class="fw-bold mb-2">Pay Per Hour:</h4>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Salary Per Day" name="salary_per_day" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $salary_per_day;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Pay Per Hour" name="pay_per_hr" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pay_per_hr;}?>"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Present Day's:</h4>
+                  <h4 class="fw-bold mb-2">Working Hours:</h4>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Day's" name="present_days" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $present_days;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Hours" name="duration" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $duration;}?>"/>
                   </div>
                 </div>
                 </div>
@@ -313,27 +305,14 @@ if(isset($_POST['slip'])){
                 <div class="row">
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Gross Salary:</h4>
+                  <h4 class="fw-bold mb-2">Gross Pay:</h4>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Gross Salary" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Gross Pay" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>"/>
                   </div>
                 </div>
-                <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                  <h4 class="fw-bold mb-2">TDS 5%</h4>
-                  </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="TDS" name="tds" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $tds;}?>"/>
-                  </div>
-                </div>
-                </div>
-
-                <div class="row">
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
                   <h4 class="fw-bold mb-2">PF 2%:</h4>
@@ -344,14 +323,17 @@ if(isset($_POST['slip'])){
                   <input type="text" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>"/>
                   </div>
                 </div>
+                </div>
+
+                <div class="row">
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Net Salary</h4>
+                  <h4 class="fw-bold mb-2">Net Pay:</h4>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Net Salary" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Net Pay" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>"/>
                   </div>
                 </div>
                 </div>
@@ -364,7 +346,7 @@ if(isset($_POST['slip'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cheque">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cheque">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cheque
                   </label>
@@ -372,7 +354,7 @@ if(isset($_POST['slip'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cash">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cash">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cash
                   </label>
@@ -380,7 +362,7 @@ if(isset($_POST['slip'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="NEFT">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="NEFT">
                   <label class="form-check-label" for="flexRadioDefault1">
                     NEFT
                   </label>
@@ -388,9 +370,9 @@ if(isset($_POST['slip'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Online">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Online">
                   <label class="form-check-label" for="flexRadioDefault1">
-                    Online
+                   Online
                   </label>
                   </div>
                 </div>
@@ -399,7 +381,7 @@ if(isset($_POST['slip'])){
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Salary Slip" name="slip" class="btn btn-outline-light btn-lg px-5"> 
+              <input type="submit" value="Pay Slip" name="slip" class="btn btn-outline-light btn-lg px-5"> 
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
