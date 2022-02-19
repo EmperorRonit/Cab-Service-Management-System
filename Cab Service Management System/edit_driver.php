@@ -122,6 +122,7 @@ if(isset($_POST['delete'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
+      <a href="driver_payment.php?logcount=<?php echo $logcount?>&driver_id=<?php echo $driver_id?>"><input type="submit" value="Pay" name="pay" class="btn btn-outline-dark btn-lg px-5"></a><br><br>
         <div class="card bg-dark text-white" style="border-radius: 1rem; height: 2000px; width: 1000px;">
           <div class="card-body p-5 text-center">
 

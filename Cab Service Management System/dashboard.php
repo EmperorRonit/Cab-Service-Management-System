@@ -32,8 +32,14 @@ if(isset($_GET['logcount'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Booking
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Package Booking</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Normal Booking</a></li>
+                    </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>" name="cab">Cabs</a>

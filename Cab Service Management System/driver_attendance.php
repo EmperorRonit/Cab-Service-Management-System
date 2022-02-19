@@ -29,16 +29,27 @@ if(isset($_POST['save'])){
     }
 }
 
-$res = mysqli_query($mysqli, "select * from driver_attendancetb");
 
 if(isset($_POST['log'])){
+  $driver_id = $_POST['driver_id'];
+  $driver_name = $_POST['driver_name'];
+  $source = $_POST['source'];
+  $destination = $_POST['destination'];
+  $trip_date = $_POST['trip_date'];
+  $duration = $_POST['duration'];
+  $res = mysqli_query($mysqli, "select * from driver_attendancetb where driver_id='".$driver_id."'");
+
   $pdf = new FPDF();
   $pdf->AddPage();
   $pdf->SetFont('Arial','B',20);
-  $pdf->Cell(45,20,'');
-  $pdf->Cell(10,20,'Driver Attendance Log Report');
+  $pdf->Cell(55,20,'');
+  $pdf->Cell(50,20,'Attendance Log Report');
   $pdf->Ln();
-
+  $pdf->SetFont('Arial','B',18);
+  $pdf->Cell(115,10,$driver_name);
+  $pdf->SetFont('Arial','B',12);
+  $pdf->Cell(10,8,"Driver ID : ".$driver_id);
+  $pdf->Ln();
   $pdf->SetFont('Arial','B',10);
   $pdf->Cell(10,10,'ID',1);
   $pdf->Cell(10,10,'D ID',1);
