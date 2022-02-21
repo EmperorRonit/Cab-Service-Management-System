@@ -1,14 +1,49 @@
 <?php
 include("config.php");
+require("FPDF/fpdf.php");
 if(isset($_GET['logcount'])){
     $logcount=$_GET["logcount"];
 }
-$res = mysqli_query($mysqli, "select * from packagetb");
+$res = mysqli_query($mysqli, "select * from customertb");
 
+if(isset($_POST['log'])){
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',20);
+    $pdf->Cell(55,20,'');
+    $pdf->Cell(10,20,'Customer Log Report');
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','B',8);
+    $pdf->Cell(10,10,'ID',1);
+    $pdf->Cell(50,10,'Name',1);
+    $pdf->Cell(50,10,'Email',1);
+    $pdf->Cell(25,10,'Phone No.',1);
+    $pdf->Cell(25,10,'Date of Birth',1);
+    $pdf->Cell(30,10,'Rgistration Date',1);
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','',8);
+    while($row = mysqli_fetch_array($res)){
+        $pdf->Cell(10,8,$row['customer_id'],1);
+        $pdf->Cell(50,8,$row['name'],1);
+        $pdf->Cell(50,8,$row['email'],1);
+        $pdf->Cell(25,8,$row['phone_no'],1);
+        $pdf->Cell(25,8,$row['dob'],1);
+        $pdf->Cell(30,8,$row['date'],1);
+        $pdf->Ln();
+    }
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('d-m-y h:i:s');
+    $pdf->Ln();
+    $pdf->Cell(155,8);
+    $pdf->Cell(10,8,'Date : '.$date,);
+    $pdf->Output();
+}
 ?>
 <html>
     <head>
-        <title>Package</title>
+        <title>Customer</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,24 +58,21 @@ $res = mysqli_query($mysqli, "select * from packagetb");
             <span class="navbar-toggler-icon"></span>
           </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Details</a>
+                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>" name="pakcage">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
                     </li>
                 </ul>
                 <?php
@@ -56,15 +88,18 @@ $res = mysqli_query($mysqli, "select * from packagetb");
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 20px;">Packages</h2>
-        <br><br>
+        <h2 style="margin-top: 15px;">Customer</h2><br>
+        <form action="" method="post" style="margin-top: 10px;">
+    <input type="submit" value="Log Report" name="log" class="btn btn-outline-dark btn-lg">    
+    </form>
     <table class="table table-striped table-dark">
         <thead>
     <tr>
-      <th scope="col">Package Description</th>
-      <th scope="col">Cab Type</th>
-      <th scope="col">Capacity</th>
-      <th scope="col">Price</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone No.</th>
+      <th scope="col">Date of Birth</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -72,16 +107,17 @@ $res = mysqli_query($mysqli, "select * from packagetb");
     while($row = mysqli_fetch_array($res)){
         echo "<tbody>";
         echo "<tr>";
-        echo "<td>".$row['package_dec']."</td>";
-        echo "<td>".$row['cab_type']."</td>";
-        echo "<td>".$row['capacity']."</td>";
-        echo "<td>".$row['package_price']."</td>";
-        echo "<td><a href='package_booking_customer.php?logcount=".$logcount."&package_id=".$row['package_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Book</button></a></td>";
+        echo "<th scope='row'>".$row['customer_id']."</th>";
+        echo "<td>".$row['name']."</td>";
+        echo "<td>".$row['email']."</td>";
+        echo "<td>".$row['phone_no']."</td>";
+        echo "<td>".$row['dob']."</td>";
+        echo "<td><a href='customer_client_view.php?logcount=".$logcount."&customer_id=".$row['customer_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }
     ?>
-    </table>     
+    </table>            
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
