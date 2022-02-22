@@ -2,13 +2,18 @@
 session_start();
 if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
     $logcount=1;
+    $username=$_SESSION['username'];
 }
 else{
     $logcount=0;
+    $username=null;
 }
+
 if(isset($_GET['logcount'])){
     $logcount = 1;
+    $username=$_GET['username'];
 }
+
 ?>
 
 <!doctype html>
@@ -32,16 +37,16 @@ if(isset($_GET['logcount'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>">Details</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>" name="pakcage">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
