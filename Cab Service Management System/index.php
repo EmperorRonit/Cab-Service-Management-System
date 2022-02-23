@@ -1,4 +1,5 @@
 <?php
+include("config.php");
 session_start();
 if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
     $logcount=1;
@@ -9,11 +10,42 @@ else{
     $username=null;
 }
 
-if(isset($_GET['logcount'])){
-    $logcount = 1;
+if(isset($_GET['username'])){
     $username=$_GET['username'];
 }
 
+$sql = "SELECT * FROM customertb WHERE email='".$username."'";
+$res = mysqli_query($mysqli, $sql);
+$rowlg = mysqli_fetch_array($res);
+
+if(isset($_POST['book'])){
+    if($rowlg!=null){
+    $customer_id = $rowlg['customer_id'];
+    $name = $_POST['name'];
+    $no_of_persons = $_POST['no_of_persons'];
+    $phone_no = $_POST['phone_no'];
+    $email = $_POST['email'];
+    $pickup_point = $_POST['pickup_point'];
+    $drop_point = $_POST['drop_point'];
+    $cab_type = $_POST['cab_type'];
+    $trip_date = $_POST['trip_date'];
+  
+    $sql = "insert into normal_bookingtb(customer_id, name, no_of_persons, phone_no, email, pickup_point, drop_point, cab_type, trip_date) 
+    values('$customer_id', '$name', '$no_of_persons', '$phone_no', '$email', '$pickup_point', '$drop_point', '$cab_type', '$trip_date')";
+  
+      if(mysqli_query($mysqli, $sql)){
+        echo"<script>alert('Package Booked Wait For Conformation')</script>";
+        $logcount=1;
+      }
+      else{
+        echo"<script>alert('Faild to Book')</script>";
+      }
+      
+    }
+    else{
+        echo"<script>alert('Please SignIn/Signup, If Done So Please Add Basic Details In Details Section')</script>";
+    }
+  }
 ?>
 
 <!doctype html>
@@ -56,7 +88,7 @@ if(isset($_GET['logcount'])){
                     </li>
                 </ul>
                 <?php
-                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                     session_destroy();
                 }
@@ -68,6 +100,154 @@ if(isset($_GET['logcount'])){
             </div>
         </div>
     </nav>
+    <div class="container">
+    <section class="vh-100 gradient-custom" style="align-content: center; margin-left: 400px;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-4 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 900px; width: 650px;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+            <form action="" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+              <div class="col-md-8 mb-4">
+              <h1 class="fw-bold mb-2 text-uppercase">Book The Cab</h1><br>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Name:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="name" value="<?php echo $rowlg['name']?>"/>
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">No. Of Persons:</h4>
+                  </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Numbers" name="no_of_persons"/>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Phone No.:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>"/>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Email:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>"/>
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Pick-Up Point:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                      <textarea name="pickup_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Pick-up Point" ></textarea>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Drop Point:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                      <textarea name="drop_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Drop Point" ></textarea>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Cab Type:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <select name="cab_type" id="cars" class="form-control form-control">
+                    <option value="N/A">Choos Cab</option>
+                    <option value="Hactback">Hactback</option>
+                    <option value="Sadan">Sadan</option>
+                    <option value="SUV">SUV</option>
+                  </select>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Trip Date:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="date" name="trip_date" id="" class="form-control form-control">
+                  </div>
+                </div>
+                </div>
+
+                <br><br><div class="row">
+              <div class="col-md-3 mb-4">
+              <div class="form-outline">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+              <div class="form-outline">
+              <input type="submit" value="Book" name="book" class="btn btn-outline-light btn-lg px-5"><br><br>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+              <div class="form-outline">
+                  </div>
+                </div>
+                </div>
+              
+            </form>       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

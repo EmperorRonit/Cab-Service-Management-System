@@ -15,6 +15,7 @@ $row = mysqli_fetch_array($res);
 
 
 if(isset($_POST['book'])){
+  if($rowlg!=null){
   $package_desc = $_POST['package_desc'];
   $cab_type = $_POST['cab_type'];
   $capacity = $_POST['capacity'];
@@ -38,6 +39,10 @@ if(isset($_POST['book'])){
     else{
       echo"<script>alert('Faild to Book')</script>";
     }
+  }
+  else{
+    echo"<script>alert('Please SignIn/Signup, If Done So Please Add Basic Details In Details Section')</script>";
+  }
 }
 ?>
 <html>
@@ -79,7 +84,7 @@ if(isset($_POST['book'])){
                     </li>
                 </ul>
                 <?php
-                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
+                if ($logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                    
                 }

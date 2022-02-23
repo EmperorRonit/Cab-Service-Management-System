@@ -3,8 +3,8 @@ include("config.php");
 
 $logcount=$_GET["logcount"];
 
-$pkg_b_id=$_GET['pkg_b_id'];
-$sql = "SELECT * FROM package_bookingtb WHERE pkg_b_id='".$pkg_b_id."'";
+$booking_id=$_GET['booking_id'];
+$sql = "SELECT * FROM normal_bookingtb WHERE booking_id='".$booking_id."'";
 $res = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($res);
 
@@ -14,9 +14,10 @@ if(isset($_POST['confirm'])){
   $driver_name = $_POST['driver_name'];
   $driver_ph_no = $_POST['driver_ph_no'];
   $vehical_no = $_POST['vehical_no'];
+  $payment_st = $_POST['payment_st'];
 
-  $sql = "UPDATE package_bookingtb set drviver_id='".$drviver_id."', driver_name='".$driver_name."', driver_ph_no='".$driver_ph_no."', 
-  vehical_no='".$vehical_no."', status='Booked' WHERE pkg_b_id='".$pkg_b_id."'";
+  $sql = "UPDATE normal_bookingtb set drviver_id='".$drviver_id."', driver_name='".$driver_name."', driver_ph_no='".$driver_ph_no."', 
+  vehical_no='".$vehical_no."', status='Booked', payment_st='".$payment_st."' WHERE booking_id='".$booking_id."'";
 
     if(mysqli_query($mysqli, $sql)){
       echo"<script>alert('Booking Confirmed')</script>";
@@ -28,7 +29,7 @@ if(isset($_POST['confirm'])){
 ?>
 <html>
     <head>
-        <title>Package Booking</title>
+        <title>Normal Booking</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +55,7 @@ if(isset($_POST['confirm'])){
                      </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>" name="driver">Package Booking</a></li>
-                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Normal Booking</a></li>
+                        <li><a class="dropdown-item" href="normal_booking.php?logcount=<?php echo $logcount?>">Normal Booking</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
@@ -104,7 +105,7 @@ if(isset($_POST['confirm'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1650px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1300px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
@@ -112,66 +113,11 @@ if(isset($_POST['confirm'])){
 
             <div class="row">
               <div class="col-md-7 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Package Booking</h1><br>
+              <h1 class="fw-bold mb-2 text-uppercase">Normal Booking</h1><br>
                 </div>
                 </div>
 
                 <div class="row">
-              <div class="col-md-6 mb-4">
-              <u><h3 class="fw-bold mb-2">Pakcage Information</h3></u><br>
-                </div>
-                </div>
-
-                <div class="row">
-              <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                    <h4 class="fw-bold mb-2">Package Description:</h4>
-                  </div>
-                </div>
-                <div class="col-md-9 mb-4">
-                  <div class="form-outline">
-                      <textarea name="package_desc" id="" cols="30" rows="3" class="form-control form-control" placeholder="Description" ><?php echo $row['package_desc']?></textarea>
-                  </div>
-                </div>
-                </div>
-
-                <div class="row">
-              <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Cab Type:</h4>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                  <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" value="<?php echo $row['cab_type']?>"/>
-                  </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Capacity:</h4>
-                  </div>
-                </div>
-                <div class="col-md-2 mb-4">
-                  <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>"/>
-                  </div>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                    <h4 class="fw-bold mb-2">Pacakge Price:</h4>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                  <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>"/>
-                </div>
-                </div>
-                </div>
-
-                <br><br><div class="row">
               <div class="col-md-6 mb-4">
               <u><h3 class="fw-bold mb-2">Customer Information</h3></u><br>
                 </div>
@@ -185,7 +131,7 @@ if(isset($_POST['confirm'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" name="name" value="<?php echo $row['name']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="name" value="<?php echo $row['name']?>"/>
                 </div>
                 </div>
                 </div>
@@ -316,6 +262,38 @@ if(isset($_POST['confirm'])){
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
                   <input type="text" class="form-control form-control" placeholder="Register No." name="vehical_no"/>
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Payment Status:</h4>
+                  </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                  <input class="form-check-input" type="radio" name="payment_st" id="flexRadioDefault1" value="Paid">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  Paid
+                  </label>
+                </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                  <input class="form-check-input" type="radio" name="payment_st" id="flexRadioDefault1" value="After Trip">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  After Trip
+                  </label>
+                </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                  <input class="form-check-input" type="radio" name="payment_st" id="flexRadioDefault1" value="Pending">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  Pending
+                  </label>
                 </div>
                 </div>
                 </div>

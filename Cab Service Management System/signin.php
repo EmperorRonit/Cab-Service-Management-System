@@ -9,16 +9,16 @@ if(isset($_POST['sub'])){
     $result = mysqli_fetch_array($res);
     $usertype = $result['UserType'];
     if($result && $usertype=='Customer'){
-        header("location:index.php");
         session_start();
         $_SESSION['loggedin']=true;
         $_SESSION['username']=$username;
+        header("location:index.php?username=$username");
     }
     elseif($result && $usertype=='Admin'){
-      header("location:dashboard.php");
         session_start();
         $_SESSION['loggedin']=true;
         $_SESSION['username']=$username;
+        header("location:dashboard.php?username=$username");
     }
     else{
         echo"Failed";

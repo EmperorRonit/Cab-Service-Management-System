@@ -1,8 +1,8 @@
 <?php
 include("config.php");
-if(isset($_GET['logcount'])){
-  $logcount=$_GET["logcount"];
-}
+
+$logcount=$_GET["logcount"];
+$username=$_GET['username'];
 
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
@@ -41,19 +41,22 @@ if(isset($_POST['submit'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
                     </li>
                 </ul>
                 <?php
@@ -140,7 +143,7 @@ if(isset($_POST['submit'])){
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Cancel" name="cancel" class="btn btn-outline-light btn-lg px-5"><br><br>
+                <a href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="btn btn-outline-light btn-lg px-5" name="cancel">Cancel</a>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
