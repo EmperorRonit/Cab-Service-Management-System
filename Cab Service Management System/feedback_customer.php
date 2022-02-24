@@ -1,33 +1,39 @@
 <?php
 include("config.php");
-if(isset($_GET['logcount'])){
-  $logcount=$_GET["logcount"];
-}
-$customer_id=$_GET['customer_id'];
-$sql = "SELECT * FROM customertb WHERE customer_id='".$customer_id."'";
+
+$logcount=$_GET["logcount"];
+$username=$_GET['username'];
+$sql = "SELECT * FROM customertb WHERE email='".$username."'";
 $res = mysqli_query($mysqli, $sql);
-$row = mysqli_fetch_array($res);
+$rowlg = mysqli_fetch_array($res);
 
 if(isset($_POST['submit'])){
-  $name = $_POST['name'];
+if($rowlg!=null){
+  $customer_id = $rowlg['customer_id'];
+  $customer_name = $_POST['customer_name'];
   $email = $_POST['email'];
   $phone_no = $_POST['phone_no'];
-  $dob = $_POST['dob'];
+  $review = $_POST['review'];
+  $comment = $_POST['comment'];
 
-  $sql = "insert into customertb(name, email, phone_no, dob)
-          values('$name', '$email', '$phone_no', '$dob')";
+  $sql = "insert into feedbacktb(customer_id, customer_name, email, phone_no, review, comment)
+          values('$customer_id', '$customer_name', '$email', '$phone_no', '$review', '$comment')";
 
     if(mysqli_query($mysqli, $sql)){
-      echo"<script>alert('Saved Succesfully')</script>";
+      echo"<script>alert('Feedback Sumbited Sucessfully')</script>";
     }
     else{
-      echo"<script>alert('Faild to Saved')</script>";
+      echo"<script>alert('Faild to Submit Feedback')</script>";
     }
+}
+else{
+    echo"<script>alert('Please SignIn/SignUp, If Done So Please Add Basic Details In Details Section')</script>";
+}
 }
 ?>
 <html>
     <head>
-        <title>Customer Details</title>
+        <title>Feedback</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,19 +51,22 @@ if(isset($_POST['submit'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
                     </li>
                 </ul>
                 <?php
@@ -73,19 +82,19 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
     <div class="container">
-    <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 550px;">
+    <section class="vh-100 gradient-custom" style="align-content: center; margin-left: 400px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 600px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 700px; width: 700px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
             <form action="" method="post" enctype="multipart/form-data">
 
             <div class="row">
-              <div class="col-md-7 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Customer Details</h1><br>
+              <div class="col-md-5 mb-4">
+              <h1 class="fw-bold mb-2 text-uppercase">Feedback</h1><br>
                 </div>
                 </div>
 
@@ -97,7 +106,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Full Name" name="name" value="<?php echo $row['name']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Full Name" name="customer_name" value="<?php echo $rowlg['name']?>"/>
                 </div>
                 </div>
                 </div>
@@ -110,7 +119,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="abc@gmail.com" name="email" value="<?php echo $row['email']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="abc@gmail.com" name="email" value="<?php echo $rowlg['email']?>"/>
                 </div>
                 </div>
                 </div>
@@ -123,7 +132,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>"/>
+                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>"/>
                   </div>
                 </div>
                 </div>
@@ -131,12 +140,19 @@ if(isset($_POST['submit'])){
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Date of Birth:</h4>
+                  <h4 class="fw-bold mb-2">Review:</h4>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="dob" id="" class="form-control form-control" value="<?php echo $row['dob']?>">
+                  <select name="review" id="cars" class="form-control form-control">
+                    <option value="N/A">Choose</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Very Good">Very Good</option>
+                    <option value="Good">Good</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Poor">Poor</option>
+                  </select>
                   </div>
                 </div>
                 </div>
@@ -144,12 +160,12 @@ if(isset($_POST['submit'])){
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Date of Registration:</h4>
+                  <h4 class="fw-bold mb-2">Comment:</h4>
                   </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="10 digit" name="date" value="<?php echo $row['date']?>"/>
+                  <textarea name="comment" id="" cols="30" rows="4" class="form-control form-control" placeholder="Drop Point" ></textarea>
                   </div>
                 </div>
                 </div>
@@ -157,6 +173,7 @@ if(isset($_POST['submit'])){
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
+                <a href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="btn btn-outline-light btn-lg px-5" name="cancel">Cancel</a>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -169,6 +186,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-md-3 mb-4">
               <div class="form-outline">
+              <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
                   </div>
                 </div>
                 </div>
