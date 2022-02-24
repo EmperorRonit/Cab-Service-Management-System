@@ -10,7 +10,8 @@ else{
     $username=null;
 }
 
-if(isset($_GET['username'])){
+if(isset($_GET['username']) && isset($_GET['logcount'])){
+    $logcount=$_GET['logcount'];
     $username=$_GET['username'];
 }
 
@@ -84,7 +85,7 @@ if(isset($_POST['book'])){
                         <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
                 </ul>
                 <?php
@@ -201,7 +202,7 @@ if(isset($_POST['book'])){
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
                   <select name="cab_type" id="cars" class="form-control form-control">
-                    <option value="N/A">Choos Cab</option>
+                    <option value="N/A">Choose Cab</option>
                     <option value="Hactback">Hactback</option>
                     <option value="Sadan">Sadan</option>
                     <option value="SUV">SUV</option>

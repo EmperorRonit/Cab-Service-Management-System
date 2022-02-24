@@ -33,7 +33,6 @@ if(isset($_POST['log'])){
   $employeeid = $_POST['employeeid'];
   $employee_name = $_POST['employee_name'];
   $designation = $_POST['designation'];
-  $attendance = $_POST['attendance'];
   $res = mysqli_query($mysqli, "select * from employee_attendancetb where employeeid='".$employeeid."'");
   
   $pdf = new FPDF();
