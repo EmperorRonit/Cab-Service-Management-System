@@ -1,8 +1,9 @@
 <?php
 include("config.php");
-if(isset($_GET['logcount'])){
-    $logcount=$_GET["logcount"];
-}
+
+$username=$_GET['username'];
+$logcount=$_GET["logcount"];
+
 $res = mysqli_query($mysqli, "select * from packagetb");
 
 ?>
@@ -23,18 +24,18 @@ $res = mysqli_query($mysqli, "select * from packagetb");
             <span class="navbar-toggler-icon"></span>
           </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Details</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>" name="pakcage">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
@@ -44,8 +45,9 @@ $res = mysqli_query($mysqli, "select * from packagetb");
                     </li>
                 </ul>
                 <?php
-                if ($logcount==1){
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                    
                 }
                 else{
                     echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
@@ -76,7 +78,7 @@ $res = mysqli_query($mysqli, "select * from packagetb");
         echo "<td>".$row['cab_type']."</td>";
         echo "<td>".$row['capacity']."</td>";
         echo "<td>".$row['package_price']."</td>";
-        echo "<td><a href='package_booking_customer.php?logcount=".$logcount."&package_id=".$row['package_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>Book</button></a></td>";
+        echo "<td><a href='package_booking_customer.php?logcount=".$logcount."&package_id=".$row['package_id']."&username=".$username."'><button class='btn btn-outline-light btn-sm' type='submit'>Book</button></a></td>";
         echo "</tr>";
         echo"</tbody>";
     }

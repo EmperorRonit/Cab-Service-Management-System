@@ -3,46 +3,27 @@ include("config.php");
 
 $logcount=$_GET["logcount"];
 
-$username=$_GET['username'];
-$sql = "SELECT * FROM customertb WHERE email='".$username."'";
-$res = mysqli_query($mysqli, $sql);
-$rowlg = mysqli_fetch_array($res);
-
-$package_id=$_GET['package_id'];
-$sql = "SELECT * FROM packagetb WHERE package_id='".$package_id."'";
+$pkg_b_id=$_GET['pkg_b_id'];
+$sql = "SELECT * FROM package_bookingtb WHERE pkg_b_id='".$pkg_b_id."'";
 $res = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($res);
 
 
-if(isset($_POST['book'])){
-  if($rowlg!=null){
-  $package_desc = $_POST['package_desc'];
-  $cab_type = $_POST['cab_type'];
-  $capacity = $_POST['capacity'];
-  $package_price = $_POST['package_price'];
-  $customer_id = $rowlg['customer_id'];
-  $name = $_POST['name'];
-  $no_of_persons = $_POST['no_of_persons'];
-  $phone_no = $_POST['phone_no'];
-  $email = $_POST['email'];
-  $pickup_point = $_POST['pickup_point'];
-  $drop_point = $_POST['drop_point'];
-  $trip_date = $_POST['trip_date'];
+if(isset($_POST['confirm'])){
+  $drviver_id = $_POST['drviver_id'];
+  $driver_name = $_POST['driver_name'];
+  $driver_ph_no = $_POST['driver_ph_no'];
+  $vehical_no = $_POST['vehical_no'];
 
-  $sql = "insert into package_bookingtb(package_id, package_desc, cab_type, capacity, package_price, customer_id, name, no_of_persons, phone_no, email, 
-  pickup_point, drop_point, trip_date) values('$package_id', '$package_desc', '$cab_type', '$capacity', '$package_price', '$customer_id', '$name', '$no_of_persons', 
-  '$phone_no', '$email', '$pickup_point', '$drop_point', '$trip_date')";
+  $sql = "UPDATE package_bookingtb set drviver_id='".$drviver_id."', driver_name='".$driver_name."', driver_ph_no='".$driver_ph_no."', 
+  vehical_no='".$vehical_no."', status='Booked' WHERE pkg_b_id='".$pkg_b_id."'";
 
     if(mysqli_query($mysqli, $sql)){
-      echo"<script>alert('Package Booked Wait For Conformation')</script>";
+      echo"<script>alert('Booking Confirmed')</script>";
     }
     else{
-      echo"<script>alert('Faild to Book')</script>";
+      echo"<script>alert('Faild to Confirm')</script>";
     }
-  }
-  else{
-    echo"<script>alert('Please SignIn/Signup, If Done So Please Add Basic Details In Details Section')</script>";
-  }
 }
 ?>
 <html>
@@ -65,28 +46,50 @@ if(isset($_POST['book'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Booking
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>" name="driver">Package Booking</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Normal Booking</a></li>
+                    </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>" name="cab">Cabs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Driver
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Drivers</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Driver Attendance</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Employee
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="employee.php?logcount=<?php echo $logcount?>" name="employee">Employees</a></li>
+                        <li><a class="dropdown-item" href="employee_attendance.php?logcount=<?php echo $logcount?>" name="employee_attendance">Employee Attendance</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>" name="pakcage">Package</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="customer_client.php?logcount=<?php echo $logcount?>" name="customer">Customer</a>
                     </li>
                 </ul>
                 <?php
-                if ($logcount==1){
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
-                   
                 }
                 else{
                     echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
@@ -101,7 +104,7 @@ if(isset($_POST['book'])){
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1300px; width: 800px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 1650px; width: 800px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
@@ -127,7 +130,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="package_desc" id="" cols="30" rows="3" class="form-control form-control" placeholder="Description" ><?php echo $row['package_dec']?></textarea>
+                      <textarea name="package_desc" id="" cols="30" rows="3" class="form-control form-control" placeholder="Description" ><?php echo $row['package_desc']?></textarea>
                   </div>
                 </div>
                 </div>
@@ -182,7 +185,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="name" value="<?php echo $rowlg['name']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" name="name" value="<?php echo $row['name']?>"/>
                 </div>
                 </div>
                 </div>
@@ -195,7 +198,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Numbers" name="no_of_persons"/>
+                    <input type="text" class="form-control form-control" placeholder="Numbers" name="no_of_persons" value="<?php echo $row['no_of_persons']?>"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -205,7 +208,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>"/>
+                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>"/>
                   </div>
                 </div>
                 </div>
@@ -218,7 +221,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $row['email']?>"/>
                 </div>
                 </div>
                 </div>
@@ -231,7 +234,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="pickup_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Pick-up Point" ></textarea>
+                      <textarea name="pickup_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Pick-up Point" ><?php echo $row['pickup_point']?></textarea>
                   </div>
                 </div>
                 </div>
@@ -244,7 +247,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="drop_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Drop Point" ></textarea>
+                      <textarea name="drop_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Drop Point"><?php echo $row['drop_point']?></textarea>
                   </div>
                 </div>
                 </div>
@@ -257,15 +260,70 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="trip_date" id="" class="form-control form-control">
+                  <input type="date" name="trip_date" id="" class="form-control form-control" value="<?php echo $row['trip_date']?>">
                   </div>
+                </div>
+                </div>
+
+                <br><br><div class="row">
+              <div class="col-md-6 mb-4">
+              <u><h3 class="fw-bold mb-2">Booking Information</h3></u><br>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Driver Name:</h4>
+                  </div>
+                </div>
+                <div class="col-md-9 mb-4">
+                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="Driver Name" name="driver_name"/>
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+              <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Driver ID:</h4>
+                  </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="Numbers" name="drviver_id"/>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                  <h4 class="fw-bold mb-2">Phone No.:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control" placeholder="10 digit" name="driver_ph_no"/>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-3 mb-4">
+                  <div class="form-outline">
+                    <h4 class="fw-bold mb-2">Vehical No.:</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                  <input type="text" class="form-control form-control" placeholder="Register No." name="vehical_no"/>
+                </div>
                 </div>
                 </div>
 
                 <br><br><div class="row">
               <div class="col-md-3 mb-4">
               <div class="form-outline">
-                <a href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="btn btn-outline-light btn-lg px-5" name="cancel">Cancel</a><br><br>
+                <a href="package_booking_client.php?logcount=<?php echo $logcount?>" class="btn btn-outline-light btn-lg px-5" name="cancel">Cancel</a><br><br>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -278,7 +336,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-3 mb-4">
               <div class="form-outline">
-              <input type="submit" value="Book" name="book" class="btn btn-outline-light btn-lg px-5"><br><br>
+              <input type="submit" value="Confirm" name="confirm" class="btn btn-outline-light btn-lg px-5"><br><br>
                   </div>
                 </div>
                 </div>
