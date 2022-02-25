@@ -1,19 +1,48 @@
 <?php
-session_start();
-if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
-    $logcount=1;
-}
-else{
-    $logcount=0;
-}
+include("config.php");
+require("FPDF/fpdf.php");
 if(isset($_GET['logcount'])){
-    $logcount = 1;
+    $logcount=$_GET["logcount"];
+}
+$res = mysqli_query($mysqli, "select * from enquirytb where status='Unclear'");
+
+if(isset($_POST['log'])){
+    $res = mysqli_query($mysqli, "select * from enquirytb");
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',20);
+    $pdf->Cell(55,20,'');
+    $pdf->Cell(10,20,'Feedback Log Report');
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','B',8);
+    $pdf->Cell(10,10,'ID',1);
+    $pdf->Cell(40,10,'Customer Name',1);
+    $pdf->Cell(90,10,'Enquiry',1);
+    $pdf->Cell(20,10,'Status',1);
+    $pdf->Cell(30,10,'Date',1);
+    $pdf->Ln();
+
+    $pdf->SetFont('Arial','',8);
+    while($row = mysqli_fetch_array($res)){
+        $pdf->Cell(10,8,$row['eq_id'],1);
+        $pdf->Cell(40,8,$row['customer_name'],1);
+        $pdf->Cell(90,8,$row['enquiry'],1);
+        $pdf->Cell(20,8,$row['status'],1);
+        $pdf->Cell(30,8,$row['date'],1);
+        $pdf->Ln();
+    }
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('d-m-y h:i:s');
+    $pdf->Ln();
+    $pdf->Cell(155,8);
+    $pdf->Cell(10,8,'Date : '.$date,);
+    $pdf->Output();
 }
 ?>
-
 <html>
     <head>
-        <title>Dashboard</title>
+        <title>Enquires</title>
         <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,14 +103,10 @@ if(isset($_GET['logcount'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>" name="customer">Feedbacks</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>" name="customer">New User</a>
-                    </li>
                 </ul>
                 <?php
-                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
+                if ($logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
-                    session_destroy();
                 }
                 else{
                     echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
@@ -91,8 +116,36 @@ if(isset($_GET['logcount'])){
             </div>
         </div>
     </nav>
-
-
+    <div class="container">
+        <h2 style="margin-top: 15px;">Enquires</h2>
+        <form action="" method="post" style="margin-top: 10px;">
+    <input type="submit" value="Log Report" name="log" class="btn btn-outline-dark btn-lg">    
+    </form><br>
+    <table class="table table-striped table-dark">
+        <thead>
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Enquiry</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+    <?php
+    while($row = mysqli_fetch_array($res)){
+        echo "<tbody>";
+        echo "<tr>";
+        echo "<td>".$row['customer_name']."</td>";
+        echo "<td>".$row['email']."</td>";
+        echo "<td>".$row['phone_no']."</td>";
+        echo "<td>".$row['enquiry']."</td>";
+        echo "<td><a href='enquiry_client_form.php?logcount=".$logcount."&eq_id=".$row['eq_id']."'><button class='btn btn-outline-light btn-sm' type='submit'>View</button></a></td>";
+        echo "</tr>";
+        echo"</tbody>";
+    }
+    ?>
+    </table>            
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>

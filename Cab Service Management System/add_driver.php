@@ -73,17 +73,47 @@ if(isset($_POST['save'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Bookings</a>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Booking
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>" name="package_booking">Package Booking</a></li>
+                        <li><a class="dropdown-item" href="normal_booking.php?logcount=<?php echo $logcount?>" name="normal_booking">Normal Booking</a></li>
+                    </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>" name="cab">Cabs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Driver
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Drivers</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Driver Attendance</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Employee
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="employee.php?logcount=<?php echo $logcount?>" name="employee">Employees</a></li>
+                        <li><a class="dropdown-item" href="employee_attendance.php?logcount=<?php echo $logcount?>" name="employee_attendance">Employee Attendance</a></li>
+                    </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="driver.php?logcount=<?php echo $logcount?>">Drivers</a>
+                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>" name="pakcage">Package</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="employee.php?logcount=<?php echo $logcount?>">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="customer_client.php?logcount=<?php echo $logcount?>" name="customer">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="enquiry_client.php?logcount=<?php echo $logcount?>" name="customer">Enqiures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>" name="customer">Feedbacks</a>
                     </li>
                 </ul>
                 <?php
