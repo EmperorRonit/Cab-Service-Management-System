@@ -1,7 +1,10 @@
 <?php
 include("config.php");
 
-$logcount=$_GET["logcount"];
+if(isset($_GET['username']) && isset($_GET['logcount'])){
+  $logcount=$_GET['logcount'];
+  $username=$_GET['username'];
+}
 $eq_id=$_GET['eq_id'];
 $sql = "SELECT * FROM enquirytb WHERE eq_id='".$eq_id."'";
 $res = mysqli_query($mysqli, $sql);
@@ -18,6 +21,10 @@ if(isset($_POST['clear'])){
       echo"<script>alert('Faild to Cleared the Doubt')</script>";
     }
 }
+
+$sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
+    $reslg = mysqli_query($mysqli, $sqlg);
+    $rowlg = mysqli_fetch_array($reslg);
 ?>
 <html>
     <head>
@@ -30,6 +37,7 @@ if(isset($_POST['clear'])){
     <link rel="stylesheet" href="csms.css">
     </head>
     <body>
+    <?php if($rowlg['UserType']=='Admin'){?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
@@ -39,27 +47,27 @@ if(isset($_POST['clear'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
                      <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Booking
                      </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>" name="package_booking">Package Booking</a></li>
-                        <li><a class="dropdown-item" href="normal_booking.php?logcount=<?php echo $logcount?>" name="normal_booking">Normal Booking</a></li>
+                        <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="package_booking">Package Booking</a></li>
+                        <li><a class="dropdown-item" href="normal_booking.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="normal_booking">Normal Booking</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>" name="cab">Cabs</a>
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="cab">Cabs</a>
                     </li>
                     <li class="nav-item dropdown">
                      <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Driver
                      </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>" name="driver">Drivers</a></li>
-                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>">Driver Attendance</a></li>
+                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="driver">Drivers</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Driver Attendance</a></li>
                     </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -67,25 +75,28 @@ if(isset($_POST['clear'])){
                      Employee
                      </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="employee.php?logcount=<?php echo $logcount?>" name="employee">Employees</a></li>
-                        <li><a class="dropdown-item" href="employee_attendance.php?logcount=<?php echo $logcount?>" name="employee_attendance">Employee Attendance</a></li>
+                        <li><a class="dropdown-item" href="employee.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="employee">Employees</a></li>
+                        <li><a class="dropdown-item" href="employee_attendance.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="employee_attendance">Employee Attendance</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>" name="pakcage">Package</a>
+                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Package</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="customer_client.php?logcount=<?php echo $logcount?>" name="customer">Customers</a>
+                        <a class="nav-link active" aria-current="page" href="customer_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="enquiry_client.php?logcount=<?php echo $logcount?>" name="customer">Enqiures</a>
+                        <a class="nav-link active" aria-current="page" href="enquiry_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Enqiures</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>" name="customer">Feedbacks</a>
+                        <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Feedbacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="new_user.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="new_user">New User</a>
                     </li>
                 </ul>
                 <?php
-                if ($logcount==1){
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                 }
                 else{
@@ -96,6 +107,65 @@ if(isset($_POST['clear'])){
             </div>
         </div>
     </nav>
+    <?php }else{?>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dashboard.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Booking
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="package_booking_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="package_booking">Package Booking</a></li>
+                        <li><a class="dropdown-item" href="normal_booking.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="normal_booking">Normal Booking</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="cabs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="cab">Cabs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Driver
+                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="driver.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="driver">Drivers</a></li>
+                        <li><a class="dropdown-item" href="driver_attendance.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Driver Attendance</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="package_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Package</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="customer_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="enquiry_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Enqiures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="feedback_client.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="customer">Feedbacks</a>
+                    </li>
+                </ul>
+                <?php
+                if (isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true || $logcount==1){
+                    echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                }
+                else{
+                    echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
+                    echo "<a href='signup.php'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
+                }
+                ?>
+            </div>
+        </div>
+    </nav>
+    <?php }?>
     <div class="container">
     <section class="vh-100 gradient-custom" style="align-content: center; margin-right: 400px;">
   <div class="container py-5 h-100">
