@@ -14,7 +14,7 @@ if(isset($_POST['sub'])){
         $_SESSION['username']=$username;
         header("location:index.php?username=$username");
     }
-    elseif($result && $usertype=='Admin'){
+    elseif($result && $usertype=='Admin'||$usertype=='Employee'){
         session_start();
         $_SESSION['loggedin']=true;
         $_SESSION['username']=$username;
@@ -23,6 +23,10 @@ if(isset($_POST['sub'])){
     else{
         echo"Failed";
     }
+}
+if(isset($_GET['username']) && isset($_GET['logcount'])){
+  $logcount=$_GET['logcount'];
+  $username=$_GET['username'];
 }
 ?>
 
@@ -45,24 +49,33 @@ if(isset($_POST['sub'])){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Details</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                    <a class="nav-link active" aria-current="page" href="fleets.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
+                        <a class="nav-link active" aria-current="page" href="enquiry_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Enquiry</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
                 </ul>
+                <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
+                    echo "<a href='index.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                }
+                else{
+                    echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
+                    echo "<a href='signup.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
+                }
+                ?>
             </div>
         </div>
     </nav>
@@ -79,16 +92,16 @@ if(isset($_POST['sub'])){
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Email/UserName"/>
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Email"/>
               </div>
 
               <div class="form-outline form-white mb-4">
                 <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Password"/>
               </div>
 
-              <b><p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p></b>
+                <br><br>
               <input type="submit" value="Sign In" name="sub" class="btn btn-outline-light btn-lg px-5"><br><br>
-              <b><p>Don't have account? <a href="signup.php" class="text-white-50 fw-bold">Sign Up</a></p></b>
+              <b><p>Don't have account? <a href="signup.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="text-white-50 fw-bold">Sign Up</a></p></b>
             </form>       
             </div>
           </div>

@@ -17,6 +17,10 @@ $_SESSION['loggedin']=true;
 $_SESSION['username']=$username;
 }
 }
+if(isset($_GET['username']) && isset($_GET['logcount'])){
+  $logcount=$_GET['logcount'];
+  $username=$_GET['username'];
+}
 ?>
 
 
@@ -39,24 +43,33 @@ $_SESSION['username']=$username;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Details</a>
+                        <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                    <a class="nav-link active" aria-current="page" href="fleets.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Fleets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Packages</a>
+                        <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Enquiry</a>
+                        <a class="nav-link active" aria-current="page" href="enquiry_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Enquiry</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
                 </ul>
+                <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
+                    echo "<a href='index.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                }
+                else{
+                    echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
+                    echo "<a href='signup.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
+                }
+                ?>
             </div>
         </div>
     </nav>
@@ -85,7 +98,7 @@ $_SESSION['username']=$username;
               </div><br>
 
               <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
-              <b><p>Already have account? <a href="signin.php" class="text-white-50 fw-bold">Sign In</a></p></b>
+              <b><p>Already have account? <a href="signin.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="text-white-50 fw-bold">Sign In</a></p></b>
             </form>       
             </div>
           </div>

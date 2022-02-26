@@ -76,7 +76,7 @@ if(isset($_POST['book'])){
                         <a class="nav-link active" aria-current="page" href="customer_details.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Fleets</a>
+                        <a class="nav-link active" aria-current="page" href="fleets.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Fleets</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
@@ -90,12 +90,12 @@ if(isset($_POST['book'])){
                 </ul>
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
-                    echo "<a href='index.php'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                    echo "<a href='index.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
                     session_destroy();
                 }
                 else{
-                    echo "<a href='signin.php'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
-                    echo "<a href='signup.php'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
+                    echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
+                    echo "<a href='signup.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign Up</button></a>";
                 }
                 ?>
             </div>
