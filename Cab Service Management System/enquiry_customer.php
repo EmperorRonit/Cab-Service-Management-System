@@ -13,17 +13,16 @@ if($rowlg!=null){
   $customer_name = $_POST['customer_name'];
   $email = $_POST['email'];
   $phone_no = $_POST['phone_no'];
-  $review = $_POST['review'];
-  $comment = $_POST['comment'];
+  $enquiry = $_POST['enquiry'];
 
-  $sql = "insert into feedbacktb(customer_id, customer_name, email, phone_no, review, comment)
-          values('$customer_id', '$customer_name', '$email', '$phone_no', '$review', '$comment')";
+  $sql = "insert into enquirytb(customer_id, customer_name, email, phone_no, enquiry)
+          values('$customer_id', '$customer_name', '$email', '$phone_no', '$enquiry')";
 
     if(mysqli_query($mysqli, $sql)){
-      echo"<script>alert('Feedback Sumbited Sucessfully')</script>";
+      echo"<script>alert('Enquiry Request Sumbited Sucessfully')</script>";
     }
     else{
-      echo"<script>alert('Faild to Submit Feedback')</script>";
+      echo"<script>alert('Faild to Submit Enquiry Request')</script>";
     }
 }
 else{
@@ -63,7 +62,7 @@ else{
                         <a class="nav-link active" aria-current="page" href="package_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" name="pakcage">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="enquiry_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Enquiry</a>
+                        <a class="nav-link active" aria-current="page" href="equiry_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Enquiry</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
@@ -86,7 +85,7 @@ else{
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 700px; width: 700px;">
+        <div class="card bg-dark text-white" style="border-radius: 1rem; height: 650px; width: 700px;">
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
@@ -94,7 +93,7 @@ else{
 
             <div class="row">
               <div class="col-md-5 mb-4">
-              <h1 class="fw-bold mb-2 text-uppercase">Feedback</h1><br>
+              <h1 class="fw-bold mb-2 text-uppercase">Enquiry</h1><br>
                 </div>
                 </div>
 
@@ -140,32 +139,12 @@ else{
                 <div class="row">
               <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Review:</h4>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                  <div class="form-outline">
-                  <select name="review" id="cars" class="form-control form-control">
-                    <option value="N/A">Choose</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Very Good">Very Good</option>
-                    <option value="Good">Good</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Poor">Poor</option>
-                  </select>
-                  </div>
-                </div>
-                </div>
-
-                <div class="row">
-              <div class="col-md-3 mb-4">
-                  <div class="form-outline">
-                  <h4 class="fw-bold mb-2">Comment:</h4>
+                  <h4 class="fw-bold mb-2">What You Want Know?</h4>
                   </div>
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <textarea name="comment" id="" cols="30" rows="4" class="form-control form-control" placeholder="Drop Point" ></textarea>
+                  <textarea name="enquiry" id="" cols="30" rows="4" class="form-control form-control" placeholder="What you want know?" ></textarea>
                   </div>
                 </div>
                 </div>

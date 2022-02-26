@@ -93,7 +93,6 @@ if(isset($_POST['log'])){
     <table class="table table-striped table-dark">
         <thead>
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
@@ -105,7 +104,6 @@ if(isset($_POST['log'])){
     while($row = mysqli_fetch_array($res)){
         echo "<tbody>";
         echo "<tr>";
-        echo "<th scope='row'>".$row['feedback_id']."</th>";
         echo "<td>".$row['customer_name']."</td>";
         echo "<td>".$row['email']."</td>";
         echo "<td>".$row['phone_no']."</td>";
