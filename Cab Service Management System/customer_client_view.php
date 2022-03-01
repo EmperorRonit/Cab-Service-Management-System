@@ -195,7 +195,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Full Name" name="name" value="<?php echo $row['name']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Full Name" name="name" value="<?php echo $row['name']?>" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
                 </div>
                 </div>
                 </div>
@@ -208,7 +208,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="abc@gmail.com" name="email" value="<?php echo $row['email']?>"/>
+                  <input type="text" class="form-control form-control" placeholder="abc@gmail.com" name="email" value="<?php echo $row['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
                 </div>
                 </div>
                 </div>
@@ -221,7 +221,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>"/>
+                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
                   </div>
                 </div>
                 </div>

@@ -346,7 +346,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php echo $row['employee_id'];?>" name="employee_id"/>
+                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php echo $row['employee_id'];?>" name="employee_id" pattern="^[0-9]+" title="Please Enter Valid Employee ID"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -367,7 +367,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['name'];?>" name="employee_name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['name'];?>" name="employee_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
                   </div>
                 </div>
                 </div>
@@ -380,7 +380,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php echo $row['designation'];?>" name="designation"/>
+                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php echo $row['designation'];?>" name="designation" pattern="[a-zA-Z ]+" title="Please Enter Valid Designation"/>
                   </div>
                 </div>
                 </div>
@@ -393,7 +393,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Salary Per Day" name="salary_per_day" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $salary_per_day;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Salary Per Day" name="salary_per_day" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $salary_per_day;}?>" pattern="^[0-9]+" title="Please Enter Valid Amount"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -403,7 +403,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Day's" name="present_days" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $present_days;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Day's" name="present_days" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $present_days;}?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Day's"/>
                   </div>
                 </div>
                 </div>
@@ -416,7 +416,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Gross Salary" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Gross Salary" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>" pattern="^[0-9.]+" title="Please Enter Valid Gross"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -426,7 +426,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="TDS" name="tds" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $tds;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="TDS" name="tds" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $tds;}?>" pattern="^[0-9.]+" title="Please Enter Valid TDS"/>
                   </div>
                 </div>
                 </div>
@@ -439,7 +439,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>" pattern="^[0-9.]+" title="Please Enter Valid PF"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">

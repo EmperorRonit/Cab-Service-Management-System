@@ -281,7 +281,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="In Years" name="work_exp" pattern="^[0-9]{2}$" title="Please Enter Expereince In No."/>
+                  <input type="text" class="form-control form-control" placeholder="In Years" name="work_exp" pattern="^[0-9]{1,2}$" title="Please Enter Expereince In No."/>
                 </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -478,7 +478,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Account No." name="ac_no" pattern="[0-9]+" title="Please Enter Valid Account No."/>
+                  <input type="text" class="form-control form-control" placeholder="Account No." name="ac_no" pattern="^[0-9]+" title="Please Enter Valid Account No."/>
                   </div>
                 </div>
                 <div class="col-md-2 mb-4">

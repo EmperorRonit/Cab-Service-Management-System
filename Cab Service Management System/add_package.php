@@ -203,7 +203,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-7 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type"/>
+                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" pattern="[a-zA-Z ]+" title="Please Enter Valid Cab Type"/>
                   </div>
                 </div>
                 </div>
@@ -216,7 +216,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Capacity" name="capacity"/>
+                    <input type="text" class="form-control form-control" placeholder="Capacity" name="capacity" pattern="^[0-9]{1}$" title="Please Enter Valid Capacity"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -233,7 +233,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price"/>
+                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" pattern="^[0-9]+" title="Please Enter Valid Amount"/>
                 </div>
                 </div>
                 <div class="col-md-3 mb-4">
