@@ -283,7 +283,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="In Years" name="Work_exp" pattern="^[0-9]{2}$" title="Please Enter Expereince In No."/>
+                  <input type="text" class="form-control form-control" placeholder="In Years" name="Work_exp" pattern="^[0-9]{1,2}$" title="Please Enter Expereince In No."/>
                 </div>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -509,7 +509,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Aadhar No." name="Adhaar_no" pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}" title="Aadhar No."/>
+                  <input type="text" class="form-control form-control" placeholder="Aadhar No." name="Adhaar_no" pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}" title="Please Enter Valid Aadhar No."/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">

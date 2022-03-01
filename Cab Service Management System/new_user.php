@@ -175,7 +175,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
               <h2 class="fw-bold mb-2 text-uppercase">New User</h2><br><br>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="UserName" placeholder="Email"/>
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="UserName" placeholder="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
               </div>
 
               <div class="form-outline form-white mb-4">

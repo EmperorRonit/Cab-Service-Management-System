@@ -249,7 +249,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid"/>
+                    <input type="text" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid" pattern="^[0-9]+" title="Please Enter Valid Employee ID"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -271,7 +271,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
                   </div>
                 </div>
                 </div>
@@ -284,7 +284,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation"/>
+                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation" pattern="[a-zA-Z ]+" title="Please Enter Valid Designation"/>
                   </div>
                 </div>
                 </div>
