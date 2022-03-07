@@ -162,7 +162,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9]+" title="Please Enter Valid Amount"/>
+                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
                 </div>
                 </div>
                 </div>
