@@ -63,7 +63,7 @@ if(isset($_POST['submit'])){
                 </ul>
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
-                    echo "<a href='index.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                  echo "<a href='index.php'><button class='btn btn-outline-light' type='submit' name='logout'>Log Out</button></a>";
                 }
                 else{
                     echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";

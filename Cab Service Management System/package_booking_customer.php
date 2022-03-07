@@ -14,7 +14,6 @@ $sql = "SELECT * FROM packagetb WHERE package_id='".$package_id."'";
 $res = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($res);
 
-
 if(isset($_POST['book'])){
   if($rowlg!=null){
   $package_desc = $_POST['package_desc'];
@@ -86,7 +85,7 @@ if(isset($_POST['book'])){
                 </ul>
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
-                    echo "<a href='index.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Log Out</button></a>";
+                  echo "<a href='index.php'><button class='btn btn-outline-light' type='submit' name='logout'>Log Out</button></a>";
                 }
                 else{
                     echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
