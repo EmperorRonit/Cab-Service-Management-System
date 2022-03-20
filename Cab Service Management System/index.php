@@ -57,11 +57,12 @@ if(isset($_POST['book'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="Indexpage.css">
+    <link rel="stylesheet" href="CssFile.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <title>Home</title>
 </head>
 
-<body style="color:blue;">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
@@ -102,6 +103,11 @@ if(isset($_POST['book'])){
             </div>
         </div>
     </nav>
+
+    <div class="d-flex flex-column justify-content-center w-100 h-100">
+
+<div class="d-flex flex-column justify-content-center align-items-center">
+
 
     <div class="container">
     <section class="vh-100 gradient-custom" style="align-content: center; margin-left: 400px;">
@@ -244,20 +250,22 @@ if(isset($_POST['book'])){
                 </div>
               
             </form>    
-       
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </section>
-</div>
-
-
+<div class="Video" style="align-content: center; margin-top: -650px;margin: right 150px;">
+    <video width="500" height="490" controls loop>
+  <source src="Video/TrafficVideo.mp4" type="video/mp4">
+  
+  Your browser does not support the video tag.
+</video>
+    </div>
+</div>             
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-
 </html>
