@@ -3,7 +3,7 @@
  }
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #dfdfdf;
+  background-color: #ffffff;
  }
 /* Float four columns side by side */
 .column {
@@ -29,11 +29,14 @@ body {
  }
 /* Style the counter cards */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(255, 2, 2, 0.2);
   padding: 16px;
    text-align: center;
-  background-color: #575757;
+  background-color: #1f1d1d;
+  color: #ffffff;
  }
+
+ /*CSS Coding for SlideShow Images */
  * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
@@ -99,3 +102,10 @@ img {vertical-align: middle;}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
    .text {font-size: 11px}}
+   
+ footer {
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}

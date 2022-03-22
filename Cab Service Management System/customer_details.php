@@ -172,6 +172,12 @@ if(isset($_POST['submit'])){
   </div>
 </section>
 </div>
+<div class="Video" style="align-content: center; margin-top: -650px;margin: right 150px;">
+    <video width="500" height="490" controls loop>
+  <source src="Video/TrafficVideo.mp4" type="video/mp4">
+  
+  Your browser does not support the video tag.
+</video>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>

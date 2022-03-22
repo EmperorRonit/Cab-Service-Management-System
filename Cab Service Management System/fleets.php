@@ -11,8 +11,9 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="fleets.css">
+    <link rel="stylesheet" href="CssFile.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="fleets.css">
         <title>
             Fleets Page
         </title>  
@@ -59,19 +60,19 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     </nav>
     <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
-  <img src="Images/Imagestaxi1.jpg" style="width:100%">
+  <img src="Images/Imagestaxi1.jpg"  width="100%" height= "525px;">
   <div class="text"></div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">2 / 3</div>
-  <img src="Images/Imagestaxi2.jpg" style="width:100%">
+  <img src="Images/Imagestaxi2.jpg" width="100%" height="535">
   <div class="text"></div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">3 / 3</div>
-  <img src="Images/Imagestaxi4.jpg" style="width:100%">
+  <img src="Images/Imagestaxi4.jpg"  width="100%" height="525">
   <div class="text"></div>
 </div>
 
@@ -102,37 +103,38 @@ function showSlides() {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 1500); // Change image every 2 seconds
+  setTimeout(showSlides, 1500); // Change image every 1.5 seconds
 }
 </script>
+<br><br>
+<h1 style="color:whitesmoke;text-align: center; font-family: arial, sans-serif;font-size: 78px;font-weight: bold;margin-top: 0px;
+margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nice Journey</h1>
+<br>
 
-<br><br><br><br><br><br><br><br>
-<div class="scroll">
-<fieldset>
 <div class="row">
   <div class="column">
     <div class="card">
-    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap">
-      <h3>Sedan Car</h3>
-      <p>Some text</p>
-      <p>Some text</p>
+    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap" width="251" height="270">
+      <h3 style="margin-top:50px;">Sedan Car</h3>
+      <p> sedan service is a transportation service that offers taxi-like rides in vehicles. Sedan services exist in many places, though the exact definition, along with regulations, may vary in different places. In some places, the term refers to a more luxurious service than taxicabs, while in other areas, it is a cheaper alternative. In most places</p>
+      
     </div>
   </div>
 
   <div class="column">
     <div class="card">
     <img class="card-img-top" src="Images/hatchback1.jpg" alt="Card image cap" width="251" height="270">
-      <h3>Hatchback Car</h3>
-      <p>Some text</p>
-      <p>Some text</p>
+      <h3 style="margin-top:50px;">Hatchback Car</h3>
+      <p>A hatchback is a car body configuration with a rear door[1][2][3][4][5] that swings upward to provide access to a cargo area. Hatchbacks may feature fold-down second row seating, where the interior can be reconfigured to prioritize passenger or cargo volume. Hatchbacks may feature two- or three-box design.</p>
+      
     </div>
   </div>
   
   <div class="column">
     <div class="card">
     <img class="card-img-top" src="Images/suv1.jpg" alt="Card image cap" width="251" height="270">
-      <h3>S.U.V Car</h3>
-      <p>Some text</p>
+      <h3 style="margin-top:50px;">S.U.V Car</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores voluptatibus aperiam sit delectus eligendi nobis officia nisi corporis. Tenetur voluptas veritatis fuga repellendus mollitia. Aspernatur totam ad in reiciendis? Vitae.</p>
       <p>Some text</p>
     </div>
   </div>
@@ -140,8 +142,8 @@ function showSlides() {
   <div class="column">
     <div class="card">
     <img class="card-img-top" src="Images/minivan.jpg" alt="Card image cap" width="251" height="270">
-      <h3>Minivan</h3>
-      <p>Some text</p>
+      <h3 style="margin-top:50px;">Minivan</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis accusantium sunt ea aperiam voluptates ipsa qui repellat esse beatae quis, quae, ratione animi, laborum ex quisquam assumenda voluptatum pariatur inventore!</p>
       <p>Some text</p>
     </div>
   </div>
@@ -149,43 +151,57 @@ function showSlides() {
 
 <div class="column">
     <div class="card">
-    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap">
-      <h3>Card 5</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap">
-      <h3>Card 6</h3>
-      <p>Some text</p>
+    <img class="card-img-top" src="Images/Omnivan.png" alt="Card image cap" width="251" height="270">
+      <h3 style="margin-top:50px;">Omni Van</h3>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis saepe aspernatur corrupti velit. Recusandae, neque fugiat suscipit ea dolor eum quae esse quaerat? Architecto illum cumque doloribus qui fugiat veritatis?</p>
       <p>Some text</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
-    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap">
-      <h3>Card 7</h3>
-      <p>Some text</p>
+    <img class="card-img-top" src="Images/coupe.jpg" alt="Card image cap" width="251" height="270">
+      <h3 style="margin-top:50px;">Coupe Car</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque soluta delectus perspiciatis aspernatur. Tempora quas quam voluptatibus alias aut tenetur reiciendis mollitia repudiandae voluptate, quos autem, corporis asperiores inventore doloremque?</p>
       <p>Some text</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
-    <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap">
-      <h3>Card 8</h3>
-      <p>Some text</p>
-      <p>Some text</p>
+    <img class="card-img-top" src="Images/Luxury.jpg" alt="Card image cap"width="251" height="270">
+      <h3 style="margin-top:50px;">Luxury Car</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eveniet aliquid possimus recusandae, expedita reiciendis praesentium inventore aspernatur maxime voluptas necessitatibus eligendi voluptatum mollitia non voluptatem provident commodi voluptate rem!</p>
+      
     </div>
   </div>
 
-</fieldset>
-</div>
+  <div class="column">
+    <div class="card">
+    <img class="card-img-top" src="Images/Electric3.jpg" alt="Card image cap" width="251" height="270">
+      <h3 style="margin-top:50px;">Electric Car</h3>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam facilis ipsa perferendis accusamus, exercitationem explicabo molestias? Quia suscipit non nesciunt adipisci, eaque corporis soluta animi nulla ratione in expedita amet.</p>
+      <p>Some text</p>
+    </div>
+  </div>
 <br><br><br><br><br><br><br><br>
-<footer></footer>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br>
+<footer>
+  <p>Creators:Aniket Digge & Ronit Kohinkar<br>
+  <a href="AboutUs.php">CabService@example.com</a></p>
+  
+</footer>
 </body>
 </html>

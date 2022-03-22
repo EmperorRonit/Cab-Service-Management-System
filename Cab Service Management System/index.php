@@ -59,6 +59,7 @@ if(isset($_POST['book'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="CssFile.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Home</title>
 </head>
 
@@ -110,7 +111,7 @@ if(isset($_POST['book'])){
 
 
     <div class="container">
-    <section class="vh-100 gradient-custom" style="align-content: center; margin-left: 400px;">
+    <section class="vh-100 gradient-custom" style="align-content: center;margin-left: 400px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-4 col-lg-6 col-xl-5">
@@ -257,15 +258,16 @@ if(isset($_POST['book'])){
       </div>
     </div>
   </div>
-</section>
-<div class="Video" style="align-content: center; margin-top: -650px;margin: right 150px;">
-    <video width="500" height="490" controls loop>
-  <source src="Video/TrafficVideo.mp4" type="video/mp4">
   
-  Your browser does not support the video tag.
-</video>
+</section>
+</div>
     </div>
-</div>             
+    </div>
+    <div class="container" style="margin-left: 50px;margin-top: -767px;margin-bottom:800px">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30263.277148671143!2d73.82474696863657!3d18.532984880006172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c0791d785177%3A0x20d86a81ca743dc8!2sShivajinagar%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1647932707229!5m2!1sen!2sin" width="700px" height="880px" style="border: 5.5px solid black;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+
+  </body>
 </html>
