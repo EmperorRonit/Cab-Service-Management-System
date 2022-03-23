@@ -13,13 +13,12 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="CssFile.css">
-    <link rel="stylesheet" href="Aboutus.css">
     <link rel="stylesheet" href="PaymentDetails.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,11 +44,20 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
+                    </li>
                 </ul> 
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit' name='logout'>Log Out</button></a>";
-                    session_destroy();
                 }
                 else{
                     echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
@@ -58,7 +66,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                 ?>
             </div>
         </div>
-    </nav>-->
+    </nav>
 <div>
 <img src="Images/paymentgate.jpg" alt="Paris" style="height: 520px;  width: 640px; margin-top: 30px; margin-bottom: -520px;"> 
     <Fieldset>

@@ -90,6 +90,15 @@ if(isset($_POST['book'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
+                    </li>
                 </ul> 
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
@@ -216,6 +225,11 @@ if(isset($_POST['book'])){
                     <option value="Hactback">Hactback</option>
                     <option value="Sadan">Sadan</option>
                     <option value="SUV">SUV</option>
+                    <option value="Mini Van">Mini Van</option>
+                    <option value="Van">Van</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Luxury">Luxury</option>
+                    <option value="Electric Car">Electric Car</option>
                   </select>
                   </div>
                 </div>

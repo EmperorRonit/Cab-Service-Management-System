@@ -13,13 +13,12 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="CssFile.css">
-    <link rel="stylesheet" href="Aboutus.css">
     <link rel="stylesheet" href="Contactus.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +44,15 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
+                    </li>
                 </ul> 
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
@@ -58,24 +66,22 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                 ?>
             </div>
         </div>
-    </nav>-->
-<div>
+    </nav>
+<div class="container" style="margin-left: -50px; margin-bottom:50px">
     <Fieldset>
-    <legend><h1><u>Information:</u></h1></legend><br>
+    <h1><u>Information:</u></h1><br>
     <br>
-    <h2>Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp <strong><u>7685940389,</u></strong>
+    <h2>Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp <strong><u>7685940389,&nbsp&nbsp</u></strong>
     <strong><u>7685940389</u></strong></h2>
 
-    <h2>Landline No:&nbsp&nbsp&nbsp&nbsp&nbsp<strong><u>123456,</u></strong>
+    <h2>Landline No:&nbsp&nbsp&nbsp&nbsp&nbsp<strong><u>123456,&nbsp&nbsp</u></strong>
     <strong><u>654321</u></strong></h2>
     
-    <h2>Email:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><u>xyz@gmail.com</u></strong>
+    <h2>Email:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><u>xyz@gmail.com,&nbsp&nbsp</u></strong>
     <strong><u>abc@gmail.com</u></strong></h2>
 
     <h2>Address:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><u><h5> College of Arts, Science and Commerce, MODERN COLLEGE OF ENGINEERING, Modern College Of Arts Science & Commerce, Shivajinagar, Modern Engineering College Road, Sumukh Society, Shivajinagar, Pune, Maharashtra</h5></u></strong></h2>
-
-<p><a href="PaymentDetails.php">Click here for Payment Gateway:-</a></p>    
-   
+    
     </Fieldset>
 </div>
     <div class="container" style="margin-left: 50px;margin-top: -463px;margin-bottom:50px">

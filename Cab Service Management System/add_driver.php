@@ -36,7 +36,7 @@ if(isset($_POST['save'])){
   move_uploaded_file($file_loc, $folder.$Adhaar);
   
   $Driver_image = $_FILES['Driver_image']['name'];
-  $file_loc = rand(1, 1000000)."-".$_FILES['Driver_image']['tmp_name'];
+  $file_loc = $_FILES['Driver_image']['tmp_name'];
   $folder="upload/driver_photo/";
   move_uploaded_file($file_loc, $folder.$Driver_image);
 
@@ -363,7 +363,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-10 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Mention Last Qualification" name="Education" pattern="[A-Za-z )(]+" title="Please Enter Valid Education"/>
+                    <input type="text" class="form-control form-control" placeholder="Mention Last Qualification" name="Education" pattern="[A-Za-z )(.0-9]+" title="Please Enter Valid Education"/>
                   </div>
                 </div>
                 </div>
