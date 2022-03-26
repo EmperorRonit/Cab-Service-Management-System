@@ -12,13 +12,15 @@ if(isset($_POST['sub'])){
         session_start();
         $_SESSION['loggedin']=true;
         $_SESSION['username']=$username;
-        header("location:index.php?username=$username");
+        $logcount=1;
+        header("location:index.php?username=$username&logcount=$logcount");
     }
     elseif($result && $usertype=='Admin'||$usertype=='Employee'){
         session_start();
         $_SESSION['loggedin']=true;
         $_SESSION['username']=$username;
-        header("location:dashboard.php?username=$username");
+        $logcount=1;
+        header("location:dashboard.php?username=$username&logcount=$logcount");
     }
     else{
         echo"Failed";
@@ -65,6 +67,16 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
                     </li>
                 </ul>
                 <?php

@@ -18,7 +18,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <i class="material-icons" style="font-size:48px;color:white;text-shadow:2px 2px 4px #000000;">local_taxi</i>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +44,19 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
+                    </li>
                 </ul> 
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true || $logcount==1){
                     echo "<a href='index.php'><button class='btn btn-outline-light' type='submit' name='logout'>Log Out</button></a>";
-                    session_destroy();
                 }
                 else{
                     echo "<a href='signin.php?logcount=".$logcount."&username=".$username."'><button class='btn btn-outline-light' type='submit'>Sign In</button></a>";
@@ -57,7 +65,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                 ?>
             </div>
         </div>
-    </nav>-->
+    </nav><br><br><br>
     <section>
             <div class = "image">
                <img src="Images/Taxi.jpg">
@@ -72,7 +80,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
                     <div class = "vertical-line"></div>
                     <li><a href = "#">service</a></li>
                     <div class = "vertical-line"></div>
-                    <li><a href = "ContactUs.php">contact</a></li>
+                    <li><a href = "ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">contact</a></li>
                 </ul>
                 <ul class = "icons">
                     <li>

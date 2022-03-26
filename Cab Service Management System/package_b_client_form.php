@@ -36,12 +36,10 @@ $rowlg = mysqli_fetch_array($reslg);
 <html>
     <head>
         <title>Package Booking</title>
-        <link rel="stylesheet" href="csms.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="csms.css">
     </head>
     <body>
     <?php if($rowlg['UserType']=='Admin'){?>
@@ -227,7 +225,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
                   </div>
                 </div>
                 </div>
@@ -240,7 +238,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
+                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
                 </div>
                 </div>
                 </div>
@@ -272,7 +270,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Numbers" name="no_of_persons" value="<?php echo $row['no_of_persons']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Numbers" name="no_of_persons" value="<?php echo $row['no_of_persons']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -282,7 +280,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
+                    <input type="number" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $row['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
                   </div>
                 </div>
                 </div>
@@ -295,7 +293,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $row['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                  <input type="email" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $row['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
                 </div>
                 </div>
                 </div>
@@ -366,7 +364,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Numbers" name="drviver_id" pattern="^[0-9]+" title="Please Enter Valid Driver ID"/>
+                    <input type="number" class="form-control form-control" placeholder="Numbers" name="drviver_id" pattern="^[0-9]+" title="Please Enter Valid Driver ID"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -376,7 +374,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="driver_ph_no" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
+                    <input type="number" class="form-control form-control" placeholder="10 digit" name="driver_ph_no" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
                   </div>
                 </div>
                 </div>

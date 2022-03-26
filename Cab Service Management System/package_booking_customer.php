@@ -53,7 +53,7 @@ if(isset($_POST['book'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="csms.css">
+    <link rel="stylesheet" href="CssFile.css">
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -81,6 +81,15 @@ if(isset($_POST['book'])){
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="feedback_customer.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="PaymentDetails.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Payment Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="AboutUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ContactUs.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>">Contact Us</a>
                     </li>
                 </ul>
                 <?php
@@ -149,7 +158,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
                   </div>
                 </div>
                 </div>
@@ -162,7 +171,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
+                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
                 </div>
                 </div>
                 </div>
@@ -194,7 +203,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Numbers" name="no_of_persons" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Numbers" name="no_of_persons" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -204,7 +213,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
+                    <input type="number" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
                   </div>
                 </div>
                 </div>
@@ -217,7 +226,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                  <input type="email" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
                 </div>
                 </div>
                 </div>
