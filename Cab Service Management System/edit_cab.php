@@ -244,7 +244,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Model Year" name="model_year" value="<?php echo $row['model_year']?>"  pattern="^[0-9]{4}$" title="Please Enter Valid Year"/>
+                    <input type="number" class="form-control form-control" placeholder="Model Year" name="model_year" value="<?php echo $row['model_year']?>"  pattern="^[0-9]{4}$" title="Please Enter Valid Year"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
