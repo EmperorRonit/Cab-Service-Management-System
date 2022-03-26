@@ -181,8 +181,8 @@ if(isset($_POST['submit'])){
   </div>
 </section>
 </div>
-<div class="Video" style="align-content: center; margin-top: -650px;margin: right 150px;">
-    <video width="500" height="490" controls loop>
+<div class="Video" style="align-content: center; margin-top: -787px;margin-right: 150px; margin-left:6.7px;">
+    <video width="780" height="790" controls loop>
   <source src="Video/TrafficVideo.mp4" type="video/mp4">
   
   Your browser does not support the video tag.
