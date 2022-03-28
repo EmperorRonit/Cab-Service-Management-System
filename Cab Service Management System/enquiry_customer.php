@@ -34,7 +34,7 @@ else{
 ?>
 <html>
     <head>
-        <title>Feedback</title>
+        <title>Enquiry</title>
         <link rel="stylesheet" href="CssFile.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

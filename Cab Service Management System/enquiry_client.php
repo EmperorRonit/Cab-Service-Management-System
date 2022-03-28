@@ -13,7 +13,7 @@ if(isset($_POST['log'])){
     $pdf->AddPage();
     $pdf->SetFont('Arial','B',20);
     $pdf->Cell(55,20,'');
-    $pdf->Cell(10,20,'Feedback Log Report');
+    $pdf->Cell(10,20,'Enquiry Log Report');
     $pdf->Ln();
 
     $pdf->SetFont('Arial','B',8);
