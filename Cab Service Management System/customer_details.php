@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
 ?>
 <html>
     <head>
-        <title>Package Booking</title>
+        <title>Customer Deatails</title>
         <link rel="stylesheet" href="CssFile.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
