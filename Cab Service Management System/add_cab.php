@@ -194,7 +194,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-7 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control form-control" placeholder="Model Name" name="model_name"/>
+                    <input type="text" class="form-control form-control" placeholder="Model Name" name="model_name" required/>
                   </div>
                 </div>
                 </div>
@@ -207,7 +207,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Registration No." name="rg_no"/>
+                  <input type="text" class="form-control form-control" placeholder="Registration No." name="rg_no" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -224,7 +224,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="Model Year" name="model_year" pattern="^[0-9]{4}$" title="Please Enter Valid Year"/>
+                    <input type="number" class="form-control form-control" placeholder="Model Year" name="model_year" pattern="^[0-9]{4}$" title="Please Enter Valid Year" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -241,7 +241,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="purchase_date" id="" class="form-control form-control">
+                  <input type="date" name="purchase_date" id="" class="form-control form-control" required>
                 </div>
                 </div>
                 <div class="col-md-3 mb-4">
