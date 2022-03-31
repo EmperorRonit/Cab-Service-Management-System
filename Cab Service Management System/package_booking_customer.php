@@ -135,7 +135,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="package_desc" id="" cols="30" rows="3" class="form-control form-control" placeholder="Description" ><?php echo $row['package_dec']?></textarea>
+                      <textarea name="package_desc" id="" cols="30" rows="3" class="form-control form-control" placeholder="Description" required><?php echo $row['package_dec']?></textarea>
                   </div>
                 </div>
                 </div>
@@ -148,7 +148,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" value="<?php echo $row['cab_type']?>" pattern="[a-zA-Z ]+" title="Please Enter Valid Cab Type"/>
+                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" value="<?php echo $row['cab_type']?>" pattern="[a-zA-Z ]+" title="Please Enter Valid Cab Type" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -158,7 +158,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" value="<?php echo $row['capacity']?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count" required/>
                   </div>
                 </div>
                 </div>
@@ -171,7 +171,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount"/>
+                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" value="<?php echo $row['package_price']?>" pattern="^[0-9.]+" title="Please Enter Valid Amount" required/>
                 </div>
                 </div>
                 </div>
@@ -190,7 +190,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="name" value="<?php echo $rowlg['name']?>" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
+                  <input type="text" class="form-control form-control" placeholder="Pacakge Price" name="name" value="<?php echo $rowlg['name']?>" pattern="[a-zA-Z ]+" title="Please Enter Valid Name" required/>
                 </div>
                 </div>
                 </div>
@@ -203,7 +203,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="Numbers" name="no_of_persons" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count"/>
+                    <input type="number" class="form-control form-control" placeholder="Numbers" name="no_of_persons" pattern="^[0-9]{1,2}$" title="Please Enter Valid Count" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -213,7 +213,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No."/>
+                    <input type="number" class="form-control form-control" placeholder="10 digit" name="phone_no" value="<?php echo $rowlg['phone_no']?>" pattern="^[0-9]{10}$" title="Please Enter Valid 10 Digit Phone No." required/>
                   </div>
                 </div>
                 </div>
@@ -226,7 +226,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="email" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                  <input type="email" class="form-control form-control" placeholder="Email" name="email" value="<?php echo $rowlg['email']?>" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email" required/>
                 </div>
                 </div>
                 </div>
@@ -239,7 +239,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="pickup_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Pick-up Point" ></textarea>
+                      <textarea name="pickup_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Pick-up Point" required></textarea>
                   </div>
                 </div>
                 </div>
@@ -252,7 +252,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                      <textarea name="drop_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Drop Point" ></textarea>
+                      <textarea name="drop_point" id="" cols="30" rows="3" class="form-control form-control" placeholder="Drop Point" required></textarea>
                   </div>
                 </div>
                 </div>
@@ -265,7 +265,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="trip_date" id="" class="form-control form-control">
+                  <input type="date" name="trip_date" id="" class="form-control form-control" required>
                   </div>
                 </div>
                 </div>

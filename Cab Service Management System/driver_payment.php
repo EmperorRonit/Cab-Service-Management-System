@@ -337,7 +337,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="ID" value="<?php echo $row['driver_id'];?>" name="driver_id" pattern="^[0-9]+" title="Please Enter Valid Driver ID"/>
+                    <input type="number" class="form-control form-control" placeholder="ID" value="<?php echo $row['driver_id'];?>" name="driver_id" pattern="^[0-9]+" title="Please Enter Valid Driver ID" required/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -358,7 +358,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['Name'];?>" name="driver_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php echo $row['Name'];?>" name="driver_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name" required/>
                   </div>
                 </div>
                 </div>
@@ -372,7 +372,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Trip Description" name="trip_desc" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $trip_desc;}?>"/>
+                  <input type="text" class="form-control form-control" placeholder="Trip Description" name="trip_desc" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $trip_desc;}?>" required/>
                   </div>
                 </div>
                 </div>
@@ -385,7 +385,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Pay Per Hour" name="pay_per_hr" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pay_per_hr;}?>" pattern="^[0-9]+" title="Please Enter Valid Hours"/>
+                  <input type="number" class="form-control form-control" placeholder="Pay Per Hour" name="pay_per_hr" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pay_per_hr;}?>" pattern="^[0-9]+" title="Please Enter Valid Hours" required/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -395,7 +395,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Hours" name="duration" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $duration;}?>" pattern="^[0-9.]+" title="Please Enter Valid Hours"/>
+                  <input type="number" class="form-control form-control" placeholder="Hours" name="duration" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $duration;}?>" pattern="^[0-9.]+" title="Please Enter Valid Hours" required/>
                   </div>
                 </div>
                 </div>
@@ -408,7 +408,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Gross Pay" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>" pattern="^[0-9.]+" title="Please Enter Valid Gross Pay"/>
+                  <input type="number" class="form-control form-control" placeholder="Gross Pay" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>" pattern="^[0-9.]+" title="Please Enter Valid Gross Pay" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -418,7 +418,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>" pattern="^[0-9.]+" title="Please Enter Valid PF"/>
+                  <input type="number" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>" pattern="^[0-9.]+" title="Please Enter Valid PF" required/>
                   </div>
                 </div>
                 </div>
@@ -431,7 +431,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Net Pay" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>"/>
+                  <input type="number" class="form-control form-control" placeholder="Net Pay" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>" required/>
                   </div>
                 </div>
                 </div>
@@ -444,7 +444,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cheque">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cheque" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cheque
                   </label>
@@ -452,7 +452,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cash">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Cash" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cash
                   </label>
@@ -460,7 +460,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="NEFT">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="NEFT" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                     NEFT
                   </label>
@@ -468,7 +468,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Online">
+                  <input class="form-check-input" type="radio" name="payment_method" id="flexRadioDefault1" value="Online" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                    Online
                   </label>

@@ -188,7 +188,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-7 mb-4">
                   <div class="form-outline">
-                      <textarea name="package_dec" id="" cols="30" rows="5" class="form-control form-control" placeholder="Description"></textarea>
+                      <textarea name="package_dec" id="" cols="30" rows="5" class="form-control form-control" placeholder="Description" required></textarea>
                   </div>
                 </div>
                 </div>
@@ -201,7 +201,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-7 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" pattern="[a-zA-Z ]+" title="Please Enter Valid Cab Type"/>
+                  <input type="text" class="form-control form-control" placeholder="Cab Type" name="cab_type" pattern="[a-zA-Z ]+" title="Please Enter Valid Cab Type" required/>
                   </div>
                 </div>
                 </div>
@@ -214,7 +214,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" pattern="^[0-9]{1}$" title="Please Enter Valid Capacity"/>
+                    <input type="number" class="form-control form-control" placeholder="Capacity" name="capacity" pattern="^[0-9]{1}$" title="Please Enter Valid Capacity" required/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -231,7 +231,7 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" pattern="^[0-9]+" title="Please Enter Valid Amount"/>
+                  <input type="number" class="form-control form-control" placeholder="Pacakge Price" name="package_price" pattern="^[0-9]+" title="Please Enter Valid Amount" required/>
                 </div>
                 </div>
                 <div class="col-md-3 mb-4">
