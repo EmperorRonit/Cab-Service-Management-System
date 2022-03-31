@@ -104,11 +104,11 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email" required/>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Password"/>
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Password" required/>
               </div>
 
                 <br><br>

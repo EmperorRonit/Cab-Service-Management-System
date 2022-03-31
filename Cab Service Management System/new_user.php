@@ -175,15 +175,15 @@ $sqlg = "SELECT * FROM logintb WHERE UserName='".$username."'";
               <h2 class="fw-bold mb-2 text-uppercase">New User</h2><br><br>
 
               <div class="form-outline form-white mb-4">
-                <input type="email" id="typeEmailX" class="form-control form-control-lg" name="UserName" placeholder="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                <input type="email" id="typeEmailX" class="form-control form-control-lg" name="UserName" placeholder="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email" required/>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="Password" placeholder="Password"/>
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="Password" placeholder="Password" required/>
               </div>
 
               <div class="form-outline form-white mb-4">
-              <select name="UserType" id="cars" class="form-control form-control">
+              <select name="UserType" id="cars" class="form-control form-control" required>
                     <option value="N/A">User Type</option>
                     <option value="Admin">Admin</option>
                     <option value="Employee">Employee</option>

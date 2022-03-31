@@ -32,6 +32,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="repeat_password.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -95,15 +96,15 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
               <p class="text-white-50 mb-5">Please enter required details</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Your Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email"/>
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" placeholder="Your Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please Enter Valid Email" required/>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" placeholder="Your Password"/>
+                <input type="password" id="password" class="form-control form-control-lg" name="password" placeholder="Your Password" required/>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="repeat password" placeholder="Repeat Password"/>
+                <input type="password" id="repeat_password" class="form-control form-control-lg" name="repeat password" placeholder="Repeat Password" required/>
               </div><br>
 
               <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>

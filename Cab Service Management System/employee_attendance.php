@@ -249,7 +249,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid" pattern="^[0-9]+" title="Please Enter Valid Employee ID"/>
+                    <input type="number" class="form-control form-control" placeholder="ID" value="<?php if(isset($_POST['search'])){echo $row['employee_id'];}?>" name="employeeid" pattern="^[0-9]+" title="Please Enter Valid Employee ID" required/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -271,7 +271,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['name'];}?>" name="employee_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name" required/>
                   </div>
                 </div>
                 </div>
@@ -284,7 +284,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation" pattern="[a-zA-Z ]+" title="Please Enter Valid Designation"/>
+                  <input type="text" class="form-control form-control" placeholder="Designation" value="<?php if(isset($_POST['search'])){echo $row['designation'];}?>" name="designation" pattern="[a-zA-Z ]+" title="Please Enter Valid Designation" required/>
                   </div>
                 </div>
                 </div>
@@ -297,7 +297,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Present">
+                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Present" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Present
                   </label>
@@ -305,7 +305,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Absent">
+                  <input class="form-check-input" type="radio" name="attendance" id="flexRadioDefault1" value="Absent" required>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Absent
                   </label>
