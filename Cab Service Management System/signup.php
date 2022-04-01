@@ -100,7 +100,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="password" class="form-control form-control-lg" name="password" placeholder="Your Password" required/>
+                <input type="password" id="password" class="form-control form-control-lg" name="password" placeholder="Your Password" required />
               </div>
 
               <div class="form-outline form-white mb-4">
@@ -108,7 +108,7 @@ if(isset($_GET['username']) && isset($_GET['logcount'])){
               </div><br>
 
               <input type="submit" value="Submit" name="submit" class="btn btn-outline-light btn-lg px-5"><br><br>
-              <b><p>Already have account? <a href="signin.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="text-white-50 fw-bold">Sign In</a></p></b>
+              <b><p>Already have account? <a href="signin.php?logcount=<?php echo $logcount?>&username=<?php echo $username?>" class="text-white-50 fw-bold" onclick="ValidPass()" >Sign In</a></p></b>
             </form>       
             </div>
           </div>
