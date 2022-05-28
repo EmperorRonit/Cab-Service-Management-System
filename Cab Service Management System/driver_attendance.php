@@ -272,7 +272,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['Name'];}?>" name="driver_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name" required/>
+                  <input type="text" class="form-control form-control" placeholder="Name" value="<?php if(isset($_POST['search'])){echo $row['Name'];}?>" name="driver_name" pattern="[a-zA-Z ]+" title="Please Enter Valid Name"/>
                   </div>
                 </div>
                 </div>
@@ -285,7 +285,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Source" name="source" pattern="[a-zA-Z ]+" title="Please Enter Valid Trip Source" required/>
+                  <input type="text" class="form-control form-control" placeholder="Source" name="source" pattern="[a-zA-Z ]+" title="Please Enter Valid Trip Source"/>
                   </div>
                 </div>
                 </div>
@@ -298,7 +298,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-9 mb-4">
                   <div class="form-outline">
-                  <input type="text" class="form-control form-control" placeholder="Destination" name="destination" pattern="[a-zA-Z ]+" title="Please Enter Valid Trip Destination" required/>
+                  <input type="text" class="form-control form-control" placeholder="Destination" name="destination" pattern="[a-zA-Z ]+" title="Please Enter Valid Trip Destination"/>
                   </div>
                 </div>
                 </div>
@@ -311,7 +311,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                  <input type="date" name="trip_date" id="" class="form-control form-control" required>
+                  <input type="date" name="trip_date" id="" class="form-control form-control">
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -321,7 +321,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                    <input type="number" class="form-control form-control" placeholder="In Hours" name="duration" pattern="[0-9]?[0-9]?(\.[0-9][0-9]?)?" title="Please Enter Valid Duration" required/>
+                    <input type="number" class="form-control form-control" placeholder="In Hours" name="duration" pattern="[0-9]?[0-9]?(\.[0-9][0-9]?)?" title="Please Enter Valid Duration"/>
                   </div>
                 </div>
                 </div>
