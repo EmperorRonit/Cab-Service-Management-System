@@ -125,7 +125,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/basicimg.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Sedan Car</h3>
-      <p> sedan service is a transportation service that offers taxi-like rides in vehicles. Sedan services exist in many places, though the exact definition, along with regulations, may vary in different places. In some places, the term refers to a more luxurious service than taxicabs, while in other areas, it is a cheaper alternative. In most places</p>
+      <p>A sedan is defined as a 4-door passenger car with a trunk that is separate from the passengers with a three-box body: the engine, the area for passengers, and the trunk.</p>
       
     </div>
   </div>
@@ -134,8 +134,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/hatchback1.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Hatchback Car</h3>
-      <p>A hatchback is a car body configuration with a rear door[1][2][3][4][5] that swings upward to provide access to a cargo area. Hatchbacks may feature fold-down second row seating, where the interior can be reconfigured to prioritize passenger or cargo volume. Hatchbacks may feature two- or three-box design.</p>
-      
+      <p>A hatchback is a car with an extra door at the back which opens upward. He drives a little three-door hatchback. A hatchback is called a liftback when the opening area is very sloped and is lifted up to open</p>
     </div>
   </div>
   
@@ -143,8 +142,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/suv1.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">S.U.V Car</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores voluptatibus aperiam sit delectus eligendi nobis officia nisi corporis. Tenetur voluptas veritatis fuga repellendus mollitia. Aspernatur totam ad in reiciendis? Vitae.</p>
-      <p>Some text</p>
+      <p>A sport utility vehicle or SUV is a car classification that combines elements of road-going passenger cars with features from off-road vehicles, such as raised ground clearance and four-wheel drive.</p>
     </div>
   </div>
   
@@ -152,8 +150,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/minivan.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Minivan</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis accusantium sunt ea aperiam voluptates ipsa qui repellat esse beatae quis, quae, ratione animi, laborum ex quisquam assumenda voluptatum pariatur inventore!</p>
-      <p>Some text</p>
+      <p>A minivan is a vehicle built atop a platform of a small car with a low body, sliding or hinged rear doors, and 3 rows of seats that fit 8-9 passengers in total.</p>
     </div>
   </div>
 </div>
@@ -162,8 +159,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/Omnivan.png" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Omni Van</h3>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis saepe aspernatur corrupti velit. Recusandae, neque fugiat suscipit ea dolor eum quae esse quaerat? Architecto illum cumque doloribus qui fugiat veritatis?</p>
-      <p>Some text</p>
+      <p>It is available with Manual transmission. The Omni is a 5 seater.</p>
     </div>
   </div>
 
@@ -171,8 +167,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/coupe.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Coupe Car</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque soluta delectus perspiciatis aspernatur. Tempora quas quam voluptatibus alias aut tenetur reiciendis mollitia repudiandae voluptate, quos autem, corporis asperiores inventore doloremque?</p>
-      <p>Some text</p>
+      <p>A coupe is a fixed-roof car with a sloping rear roofline and one or two rows of seats. However, there is some debate surrounding whether a coupe must have two doors for passenger egress or whether cars with four doors can also be considered coupes.</p>
     </div>
   </div>
 
@@ -180,8 +175,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/Luxury.jpg" alt="Card image cap"width="251" height="270">
       <h3 style="margin-top:50px;">Luxury Car</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eveniet aliquid possimus recusandae, expedita reiciendis praesentium inventore aspernatur maxime voluptas necessitatibus eligendi voluptatum mollitia non voluptatem provident commodi voluptate rem!</p>
-      
+      <p>The term luxury is used to categorize vehicles that are equipped with better performance capabilities, lavish interiors and all the latest safety and technology features. In the past, certain brands such as Mercedes-Benz, BMW and Audi were known as the luxury vehicles.</p>
     </div>
   </div>
 
@@ -189,8 +183,7 @@ margin-bottom: 1px;text-shadow: 0 0 3px orange,0 0 37px red;">Welcome have a nic
     <div class="card">
     <img class="card-img-top" src="Images/Electric3.jpg" alt="Card image cap" width="251" height="270">
       <h3 style="margin-top:50px;">Electric Car</h3>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam facilis ipsa perferendis accusamus, exercitationem explicabo molestias? Quia suscipit non nesciunt adipisci, eaque corporis soluta animi nulla ratione in expedita amet.</p>
-      <p>Some text</p>
+      <p>Electric cars function by plugging into a charge point and taking electricity from the grid. They store the electricity in rechargeable batteries that power an electric motor, which turns the wheels.</p>
     </div>
   </div>
 <br><br><br><br><br><br><br><br>

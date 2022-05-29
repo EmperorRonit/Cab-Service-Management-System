@@ -393,7 +393,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Salary Per Day" name="salary_per_day" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $salary_per_day;}?>" pattern="^[0-9]+" title="Please Enter Valid Amount" required/>
+                  <input type="number" class="form-control form-control" placeholder="Salary Per Day" name="salary_per_day" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $salary_per_day;}?>" pattern="^[0-9]+" title="Please Enter Valid Amount"/>
                   </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -403,7 +403,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Day's" name="present_days" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $present_days;}?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Day's" required/>
+                  <input type="number" class="form-control form-control" placeholder="Day's" name="present_days" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $present_days;}?>" pattern="^[0-9]{1,2}$" title="Please Enter Valid Day's"/>
                   </div>
                 </div>
                 </div>
@@ -416,7 +416,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Gross Salary" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>" pattern="^[0-9.]+" title="Please Enter Valid Gross" required/>
+                  <input type="number" class="form-control form-control" placeholder="Gross Salary" name="gross" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $gross;}?>" pattern="^[0-9.]+" title="Please Enter Valid Gross"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -426,7 +426,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="TDS" name="tds" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $tds;}?>" pattern="^[0-9.]+" title="Please Enter Valid TDS" required/>
+                  <input type="number" class="form-control form-control" placeholder="TDS" name="tds" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $tds;}?>" pattern="^[0-9.]+" title="Please Enter Valid TDS"/>
                   </div>
                 </div>
                 </div>
@@ -439,7 +439,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>" pattern="^[0-9.]+" title="Please Enter Valid PF" required/>
+                  <input type="number" class="form-control form-control" placeholder="PF" name="pf" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $pf;}?>" pattern="^[0-9.]+" title="Please Enter Valid PF"/>
                   </div>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -449,7 +449,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-3 mb-4">
                   <div class="form-outline">
-                  <input type="number" class="form-control form-control" placeholder="Net Salary" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>" required/>
+                  <input type="number" class="form-control form-control" placeholder="Net Salary" name="net" value="<?php if(isset($_POST['calculate']) || isset($_POST['save'])){echo $net;}?>"/>
                   </div>
                 </div>
                 </div>
@@ -462,7 +462,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cheque" required>
+                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cheque">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cheque
                   </label>
@@ -470,7 +470,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cash" required>
+                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Cash">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Cash
                   </label>
@@ -478,7 +478,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="NEFT" required>
+                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="NEFT">
                   <label class="form-check-label" for="flexRadioDefault1">
                     NEFT
                   </label>
@@ -486,7 +486,7 @@ $rowlg = mysqli_fetch_array($reslg);
                 </div>
                 <div class="col-md-2 mb-4">
                   <div class="form-outline">
-                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Online" required>
+                  <input class="form-check-input" type="radio" name="pyment_method" id="flexRadioDefault1" value="Online">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Online
                   </label>
